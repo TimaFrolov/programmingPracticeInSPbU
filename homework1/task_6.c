@@ -62,6 +62,8 @@ size_t count(size_t sLen, size_t s1Len, char *str)
         }
     }
 
+    free(zFunc);
+
     return counter;
 }
 
@@ -90,4 +92,6 @@ int main()
     reverse(sLen, str + s1Len + 1);
 
     printf("Number of occurances s1 in s: %llu\n", count(sLen, s1Len, str));
+
+    free(str);
 }

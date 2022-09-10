@@ -35,6 +35,7 @@ bool testString(size_t strLen, char *str)
             }
             else
             {
+                free(stack);
                 return 0;
             }
             break;
@@ -50,21 +51,27 @@ bool testString(size_t strLen, char *str)
             }
             else
             {
+                free(stack);
                 return 0;
             }
             break;
         }
         case '\0':
+        {
+            free(stack);
             return 1;
+        }
         };
     }
 
     if (stackTop == -1)
     {
+        free(stack);
         return 1;
     }
     else
     {
+        free(stack);
         return 0;
     }
 }
@@ -93,4 +100,6 @@ int main()
     {
         printf("Brackets aren't used properly :(\n");
     }
+
+    free(str);
 }
