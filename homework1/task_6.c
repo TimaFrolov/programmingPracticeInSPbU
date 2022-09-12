@@ -1,21 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void swap(char *a, char *b)
-{
-    const char tmp = *b;
-    *b = *a;
-    *a = tmp;
-}
-
-void reverse(size_t len, char *arr)
-{
-    for (size_t i = 0; i < len / 2; ++i)
-    {
-        swap(&arr[i], &arr[len - i - 1]);
-    }
-}
-
 size_t count(size_t sLen, size_t s1Len, char *str)
 {
     // Solution using z functions. If not familiar with them, check https://codeforces.com/edu/course/2/lesson/3
@@ -69,27 +54,24 @@ size_t count(size_t sLen, size_t s1Len, char *str)
 
 int main()
 {
-    size_t sLen;
-    printf("Enter length of S: ");
-    scanf("%llu", &sLen);
-
-    char *str = malloc(sLen * sizeof(char));
-    printf("Enter S: ");
-    scanf("%s", str);
 
     size_t s1Len;
-    printf("Enter length of S1: ");
+    printf("Enter length of substring S1 (which occurances will be counted in string S): ");
     scanf("%llu", &s1Len);
 
+    char *str = malloc(s1Len * sizeof(char));
+    printf("Enter substring S1: ");
+    scanf("%s", str);
+    
+    size_t sLen;
+    printf("Enter length of string S: ");
+    scanf("%llu", &sLen);
+
     str = realloc(str, (s1Len + sLen + 1) * sizeof(char));
-    printf("Enter S1: ");
-    scanf("%s", str + sLen + 1);
+    printf("Enter string S: ");
+    scanf("%s", str + s1Len + 1);
 
-    str[sLen] = '\n';
-
-    reverse(s1Len + sLen + 1, str);
-    reverse(s1Len, str);
-    reverse(sLen, str + s1Len + 1);
+    str[s1Len] = '\n';
 
     printf("Number of occurances s1 in s: %llu\n", count(sLen, s1Len, str));
 
