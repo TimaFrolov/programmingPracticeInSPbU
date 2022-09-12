@@ -5,11 +5,6 @@
 
 int div(int dividend, int divider)
 {
-    if (divider == 0)
-    {
-        return 0;
-    }
-
     const bool isNegative = (dividend < 0) ^ (divider < 0);
     if (dividend < 0)
     {
@@ -53,5 +48,10 @@ int main()
     scanf("%d", &dividend);
     printf("Enter divider: ");
     scanf("%d", &divider);
+    if (divider == 0)
+    {
+        printf("Cannot divide by zero!");
+        return 3221225620;
+    }
     printf("quotient = %d\n", div(dividend, divider));
 }
