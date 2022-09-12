@@ -35,10 +35,7 @@ int div(int dividend, int divider)
     {
         return -quotient;
     }
-    else
-    {
-        return quotient;
-    }
+    return quotient;
 }
 
 int main()
