@@ -10,6 +10,7 @@ int main()
     int maxNumber;
     printf("Enter number: ");
     scanf("%d", &maxNumber);
+    printf("Prime numbers lower than %d", maxNumber);
     maxNumber++;
 
     bool *isPrime = malloc(maxNumber * sizeof(bool));
