@@ -21,7 +21,7 @@ bool testString(size_t strLen, char *str)
             ++stackTop;
             if (stackTop && stackTop % strSize == 0)
             {
-                stack = realloc(stack, (i + strSize) * sizeof(char));
+                stack = realloc(stack, (stackTop + strSize) * sizeof(char));
             }
             stack[stackTop] = str[i];
             break;
