@@ -85,7 +85,7 @@ int main()
     printf("Enter S1: ");
     scanf("%s", str + sLen + 1);
 
-    str[sLen] = '\036'; // record separator symbol, hope s and s1 doesn't contain it
+    str[sLen] = '\n';
 
     reverse(s1Len + sLen + 1, str);
     reverse(s1Len, str);
