@@ -63,17 +63,8 @@ bool testString(size_t strLen, char *str)
         }
         };
     }
-
-    if (stackTop == -1)
-    {
-        free(stack);
-        return 1;
-    }
-    else
-    {
-        free(stack);
-        return 0;
-    }
+    free(stack);
+    return stackTop == -1;
 }
 
 int main()
