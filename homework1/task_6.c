@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+// #define DEBUG 1
+
 size_t count(size_t sLen, size_t s1Len, char *str)
 {
     // Solution using z functions. If not familiar with them, check https://codeforces.com/edu/course/2/lesson/3
@@ -52,9 +54,38 @@ size_t count(size_t sLen, size_t s1Len, char *str)
     return counter;
 }
 
+#if defined DEBUG
+int test()
+{
+    size_t c;
+    int t = 0;
+    c = count(2, 1, "a\naa");
+    if (c != 2)
+    {
+        printf("Test failed! str = \"aa\", substr=\"a\", expected 2, got %llu\n", c);
+        t = -1;
+    }
+    c = count(10, 3, "aba\nabacababde");
+    if (c != 2)
+    {
+        printf("Test failed! str = \"abacababde\", substr=\"aba\", expected 2, got %llu\n", c);
+        t = -1;
+    }
+    c = count(9, 1, "a\nbcdeefsdf");
+    if (c != 0)
+    {
+        printf("Test failed! str = \"bcdeefsdf\", substr=\"a\", expected 0, got %llu\n", c);
+        t = -1;
+    }
+    return t;
+}
+#endif
+
 int main()
 {
-
+#if defined DEBUG
+    printf("test result: %d\n", test());
+#endif
     size_t s1Len;
     printf("Enter length of substring S1 (which occurances will be counted in string S): ");
     scanf("%llu", &s1Len);
@@ -62,7 +93,7 @@ int main()
     char *str = malloc(s1Len * sizeof(char));
     printf("Enter substring S1: ");
     scanf("%s", str);
-    
+
     size_t sLen;
     printf("Enter length of string S: ");
     scanf("%llu", &sLen);

@@ -4,6 +4,8 @@
 
 #define strSize 16
 
+// #define DEBUG 1
+
 bool testString(size_t strLen, char *str)
 {
     char *stack = malloc(strSize * sizeof(char));
@@ -67,8 +69,39 @@ bool testString(size_t strLen, char *str)
     return stackTop == -1;
 }
 
+#if defined DEBUG
+int test()
+{
+    int t = 0;
+    if (!testString(4, "(())"))
+    {
+        printf("Test failed! String = \"(())\"\n");
+        t = -1;
+    }
+    if (!testString(8, "({[()]})"))
+    {
+        printf("Test failed! String = \"({[()]})\"\n");
+        t = -1;
+    }
+    if (testString(3, "(()"))
+    {
+        printf("Test failed! String = \"(()\"");
+        t = -1;
+    }
+    if (!testString(34, "(afssdosidjif{1sadasd}fsdfs[123])\n"))
+    {
+        printf("Test failed! String = \"(afssdosidjif{1sadasd}fsdfs[123])\"\n");
+        t = -1;
+    }
+    return t;
+}
+#endif
+
 int main()
 {
+#if defined DEBUG
+    printf("test result: %d\n", test());
+#endif
     char *str = malloc(strSize * sizeof(char));
     printf("Enter a string to check proper use of brackets: ");
     size_t strLen = 0;
