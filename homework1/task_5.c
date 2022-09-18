@@ -10,6 +10,7 @@ bool testString(size_t strLen, char *str)
 {
     char *stack = malloc(strSize * sizeof(char));
     long long stackTop = -1;
+    long long stackSize = strSize;
 
     for (size_t i = 0; i < strLen; ++i)
     {
@@ -21,9 +22,10 @@ bool testString(size_t strLen, char *str)
         case '<':
         {
             ++stackTop;
-            if (stackTop && stackTop % strSize == 0)
+            if (stackTop % strSize == 0 && stackTop == stackSize)
             {
-                stack = realloc(stack, (stackTop + strSize) * sizeof(char));
+                stackSize += 16;
+                stack = realloc(stack, (stackSize + strSize) * sizeof(char));
             }
             stack[stackTop] = str[i];
             break;
