@@ -17,19 +17,13 @@ int div(int dividend, int divider)
         divider = -divider;
     }
 
-    const int powersOfTwo[] = {1073741824, 536870912, 268435456, 134217728, 67108864, 33554432,
-                               16777216, 8388608, 4194304, 2097152, 1048576, 524288, 262144, 131072,
-                               65536, 32768, 16384, 8192, 4096, 2048, 1024, 512, 256, 128, 64, 32,
-                               16, 8, 4, 2, 1};
-
-    // Could have used bit shift instead of this array, but task says "only addition, multiplication and subtraction"
-
     int quotient = 0;
-    for (ubyte i = 0; i < 31; ++i)
+    
+    for (int powerOfTwo = 1073741824; powerOfTwo != 0; powerOfTwo >>= 1)
     {
-        if ((powersOfTwo[i] + quotient) * (long long)divider <= dividend)
+        if ((powerOfTwo + quotient) * (long long)divider <= dividend)
         {
-            quotient += powersOfTwo[i];
+            quotient += powerOfTwo;
         }
     }
 
