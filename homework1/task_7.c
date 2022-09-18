@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <math.h>
 
-const int SQRT_OF_MAX_INT = 46340;
+#define SQRT_OF_MAX_INT 46340
 
 int main()
 {
