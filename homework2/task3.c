@@ -29,36 +29,33 @@ void bubbleSort(size_t len, arrType *arr)
 
 void countSort(size_t len, arrType *arr)
 {
-    arrType *sortedArr = malloc(sizeof(arrType) * len);
+    arrType min = arr[0], max = arr[0];
+    for (size_t i = 1; i < len; ++i)
+    {
+        if (arr[i] < min)
+        {
+            min = arr[i];
+        }
+        if (arr[i] > max)
+        {
+            max = arr[i];
+        }
+    }
+    size_t *nums = malloc(sizeof(size_t) * (max - min + 1));
 
     for (size_t i = 0; i < len; ++i)
     {
-        size_t c = 0;
-
-        for (size_t j = 0; j < i; ++j)
-        {
-            if (arr[j] <= arr[i])
-            {
-                ++c;
-            }
-        }
-
-        for (size_t j = i + 1; j < len; ++j)
-        {
-            if (arr[j] < arr[i])
-            {
-                ++c;
-            }
-        }
-
-        sortedArr[c] = arr[i];
+        nums[arr[i] - min]++;
     }
 
-    for (size_t i = 0; i < len; ++i)
+    for (size_t i = 0, j = 0; i < len; ++i)
     {
-        arr[i] = sortedArr[i];
+        while (nums[j] == 0)
+            ++j;
+        arr[i] = j + min;
+        --nums[j];
     }
-    free(sortedArr);
+    free(nums);
 }
 
 #ifdef DEBUG
