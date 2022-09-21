@@ -42,7 +42,8 @@ int countSort(size_t len, arrType *arr)
         }
     }
     size_t *nums = malloc(sizeof(size_t) * (max - min + 1));
-    if (nums == NULL) {
+    if (nums == NULL)
+    {
         return -1;
     }
 
@@ -143,7 +144,8 @@ int main()
 
     arrType *arr = malloc(arrSize * sizeof(int));
     arrType *arr2 = malloc(arrSize * sizeof(int));
-    if (arr == NULL || arr2 == NULL) {
+    if (arr == NULL || arr2 == NULL)
+    {
         printf("Error allocating memory for array!\n");
         return -1;
     }
@@ -178,7 +180,8 @@ int main()
 
     const clock_t clockAtStartCount = clock();
     int errorCode = countSort(arrSize, arr2);
-    if (errorCode == -1) {
+    if (errorCode == -1)
+    {
         printf("Error allocating memory for array!\n");
         return errorCode;
     }

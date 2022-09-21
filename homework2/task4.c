@@ -71,7 +71,8 @@ int main()
     srand(seed);
 
     arrType *arr = malloc(arrSize * sizeof(arrType));
-    if (arr == NULL) {
+    if (arr == NULL)
+    {
         printf("Error allocating memory for array!\n");
         return -1;
     }
