@@ -27,7 +27,7 @@ void bubbleSort(size_t len, arrType *arr)
     }
 }
 
-void countSort(size_t len, arrType *arr)
+int countSort(size_t len, arrType *arr)
 {
     arrType min = arr[0], max = arr[0];
     for (size_t i = 1; i < len; ++i)
@@ -42,6 +42,9 @@ void countSort(size_t len, arrType *arr)
         }
     }
     size_t *nums = malloc(sizeof(size_t) * (max - min + 1));
+    if (nums == NULL) {
+        return -1;
+    }
 
     for (size_t i = 0; i < len; ++i)
     {
@@ -56,6 +59,8 @@ void countSort(size_t len, arrType *arr)
         --nums[j];
     }
     free(nums);
+
+    return 0;
 }
 
 #ifdef DEBUG
@@ -138,6 +143,10 @@ int main()
 
     arrType *arr = malloc(arrSize * sizeof(int));
     arrType *arr2 = malloc(arrSize * sizeof(int));
+    if (arr == NULL || arr2 == NULL) {
+        printf("Error allocating memory for array!\n");
+        return -1;
+    }
     printf("Input array of numbers: ");
     for (size_t i = 0; i < arrSize; ++i)
     {
@@ -168,7 +177,11 @@ int main()
     free(arr);
 
     const clock_t clockAtStartCount = clock();
-    countSort(arrSize, arr2);
+    int errorCode = countSort(arrSize, arr2);
+    if (errorCode == -1) {
+        printf("Error allocating memory for array!\n");
+        return errorCode;
+    }
     const clock_t clockAtEndCount = clock();
 
     printf("Count sort took %.6f seconds! Sorted array:", (float)(clockAtEndCount - clockAtStartCount) / CLOCKS_PER_SEC);
