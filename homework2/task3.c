@@ -142,8 +142,8 @@ int main()
         scanResult = scanf("%lu", &arrSize);
     }
 
-    arrType *arr = malloc(arrSize * sizeof(int));
-    arrType *arr2 = malloc(arrSize * sizeof(int));
+    arrType *arr = malloc(arrSize * sizeof(arrType));
+    arrType *arr2 = malloc(arrSize * sizeof(arrType));
     if (arr == NULL || arr2 == NULL)
     {
         printf("Error allocating memory for array!\n");
