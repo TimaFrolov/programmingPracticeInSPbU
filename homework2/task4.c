@@ -22,14 +22,13 @@ void generate(size_t len, arrType *arr)
     }
 }
 
-void transform(size_t len, arrType *arr)
+void transform(size_t len, arrType *arr, arrType element)
 {
-    arrType element = arr[0];
     arrType *leftPtr = arr, *rightPtr = arr + len - 1;
 
     while (leftPtr < rightPtr)
     {
-        while (element > *leftPtr)
+        while (element >= *leftPtr)
         {
             ++leftPtr;
         }
@@ -85,7 +84,8 @@ int main()
     }
     printf("\n");
 
-    transform(arrSize, arr);
+    transform(arrSize, arr, arr[0]);
+    transform(arrSize, arr, arr[0]-1);
 
     printf("Transformed array:");
     for (size_t i = 0; i < arrSize; ++i)
