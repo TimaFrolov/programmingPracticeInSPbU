@@ -147,6 +147,8 @@ int main()
     if (arr == NULL || arr2 == NULL)
     {
         printf("Error allocating memory for array!\n");
+        free(arr);
+        free(arr2);
         return -1;
     }
     printf("Input array of numbers: ");
