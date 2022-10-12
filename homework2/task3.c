@@ -5,7 +5,7 @@
 
 #define arrElementType int
 
-#define DEBUG 1
+// #define DEBUG 1
 
 void swap(arrElementType *a, arrElementType *b)
 {
