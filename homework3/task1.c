@@ -23,6 +23,9 @@ void insertionSort(size_t len, arrElementType *arr)
             {
                 swap(arr + j, arr + j - 1);
             }
+            else {
+                break;
+            }
         }
     }
 }
