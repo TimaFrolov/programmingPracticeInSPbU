@@ -5,7 +5,7 @@
 
 #define arrElementType int
 
-// #define DEBUG 1
+#define DEBUG 1
 
 void swap(arrElementType *a, arrElementType *b)
 {
@@ -66,7 +66,7 @@ int countSort(size_t len, arrElementType *arr)
 }
 
 #ifdef DEBUG
-int test()
+int test1()
 {
     int testResult = 0;
 
@@ -94,7 +94,13 @@ int test()
         printf("%d}\n", arr[9]);
         testResult = -1;
     }
+    return testResult;
+}
+int test2()
+{
+    int testResult = 0;
 
+    arrElementType arr[10] = {10, 9, 8, 7, 6, 5, 10, 3, 2, 1};
     for (int i = 0; i < 10; ++i)
     {
         arr[i] = 10 - i;
@@ -102,7 +108,7 @@ int test()
     arr[6] = 10;
 
     countSort(10, arr);
-    isTestFailed = false;
+    bool isTestFailed = false;
 
     for (int i = 0; i < 10; ++i)
     {
@@ -131,7 +137,8 @@ int test()
 int main()
 {
 #ifdef DEBUG
-    printf("Test result: %d\n", test());
+    printf("Test result: %d\n", test1());
+    printf("Test result: %d\n", test2());
 #endif
     size_t arrSize = 0;
     printf("Enter array size: ");
