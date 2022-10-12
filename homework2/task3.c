@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <stdbool.h>
 
 #define arrElementType int
 
@@ -72,13 +73,13 @@ int test()
     arrElementType arr[10] = {10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
 
     bubbleSort(10, arr);
-    int isTestFailed = 0;
+    bool isTestFailed = false;
 
     for (int i = 0; i < 10; ++i)
     {
         if (arr[i] != i + 1)
         {
-            isTestFailed = 1;
+            isTestFailed = true;
             break;
         }
     }
@@ -101,13 +102,13 @@ int test()
     arr[6] = 10;
 
     countSort(10, arr);
-    isTestFailed = 0;
+    isTestFailed = false;
 
     for (int i = 0; i < 10; ++i)
     {
         if ((i < 3 && arr[i] != i + 1) || (i == 3 && arr[i] != 5) || (i > 3 && i < 8 && arr[i] != i + 2) || (i >= 8 && arr[i] != 10))
         {
-            isTestFailed = 1;
+            isTestFailed = true;
             break;
         }
     }
