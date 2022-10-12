@@ -1,9 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 #define arrElementType int
 
-// #define DEBUG 1
+#define DEBUG 1
 
 void swap(arrElementType *a, arrElementType *b)
 {
@@ -95,12 +96,12 @@ int test()
 
     int arr[] = {6, 9, 16, 8, 3, 19, 11, 18, 10, 20, 15, 17, 7, 12, 4, 2, 14, 13, 1, 5};
     sort(20, arr);
-    int isTestFailed = 0;
+    bool isTestFailed = false;
     for (int i = 0; i < 20; ++i)
     {
         if (arr[i] != i + 1)
         {
-            isTestFailed = 1;
+            isTestFailed = true;
             break;
         }
     }
@@ -118,12 +119,12 @@ int test()
 
     int arr2[] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
     sort(12, arr2);
-    isTestFailed = 0;
+    isTestFailed = false;
     for (int i = 0; i < 12; ++i)
     {
         if (arr2[i] != 1)
         {
-            isTestFailed = 1;
+            isTestFailed = true;
             break;
         }
     }
