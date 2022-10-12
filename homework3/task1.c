@@ -4,7 +4,7 @@
 
 #define arrElementType int
 
-// #define DEBUG 1
+#define DEBUG 1
 
 void swap(arrElementType *a, arrElementType *b)
 {
@@ -15,20 +15,14 @@ void swap(arrElementType *a, arrElementType *b)
 
 void insertionSort(size_t len, arrElementType *arr)
 {
-    for (size_t i = 0; i < len; ++i)
+    for (size_t i = 1; i < len; ++i)
     {
-        size_t minIndex = i;
-        for (size_t j = i + 1; j < len; ++j)
+        for (size_t j = i; j > 0; --j)
         {
-            if (arr[j] < arr[minIndex])
+            if (arr[j] < arr[j - 1])
             {
-                minIndex = j;
+                swap(arr + j, arr + j - 1);
             }
-        }
-
-        if (minIndex != i)
-        {
-            swap(&arr[minIndex], &arr[i]);
         }
     }
 }
