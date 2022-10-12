@@ -4,11 +4,11 @@
 
 #define uint unsigned int
 
-#define arrType int
+#define arrElementType int
 
 #define maxNum 20
 
-void generate(size_t len, arrType *arr)
+void generate(size_t len, arrElementType *arr)
 {
     for (size_t i = 0; i < len; ++i)
     {
@@ -18,10 +18,10 @@ void generate(size_t len, arrType *arr)
 
 int comparatorFunc(const void *a, const void *b)
 {
-    return (*(arrType *)a > *(arrType *)b) - (*(arrType *)a < *(arrType *)b);
+    return (*(arrElementType *)a > *(arrElementType *)b) - (*(arrElementType *)a < *(arrElementType *)b);
 }
 
-bool binarySearch(size_t len, arrType *arr, arrType randomNumber)
+bool binarySearch(size_t len, arrElementType *arr, arrElementType randomNumber)
 {
     size_t leftIndex = 0, rightIndex = len - 1;
 
@@ -69,7 +69,7 @@ int main()
 
     srand(seed);
 
-    arrType *arr = calloc(arrSize, sizeof(arrType));
+    arrElementType *arr = calloc(arrSize, sizeof(arrElementType));
     if (arr == NULL)
     {
         printf("Error allocating memory for array!\n");
@@ -84,7 +84,7 @@ int main()
     }
     printf("\n");
 
-    qsort(arr, arrSize, sizeof(arrType), comparatorFunc);
+    qsort(arr, arrSize, sizeof(arrElementType), comparatorFunc);
 
     printf("Enter amount of random numbers to generate: ");
     scanResult = scanf("%lu", &randomNumberAmount);
@@ -97,7 +97,7 @@ int main()
 
     for (size_t i = 0; i < randomNumberAmount; ++i)
     {
-        arrType randomNumber = 0;
+        arrElementType randomNumber = 0;
         generate(1, &randomNumber);
 
         if (binarySearch(arrSize, arr, randomNumber))

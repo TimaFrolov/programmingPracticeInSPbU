@@ -1,21 +1,21 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define arrType int
+#define arrElementType int
 
 // #define DEBUG 1
 
 int comparatorFunc(const void *a, const void *b)
 {
-    return (*(arrType *)a > *(arrType *)b) - (*(arrType *)a < *(arrType *)b);
+    return (*(arrElementType *)a > *(arrElementType *)b) - (*(arrElementType *)a < *(arrElementType *)b);
 }
 
-arrType find(size_t len, arrType *arr)
+arrElementType find(size_t len, arrElementType *arr)
 {
-    arrType ans = 0;
+    arrElementType ans = 0;
     size_t maxCount = 0;
     size_t currentCount = 1;
-    arrType currentNumber = arr[0];
+    arrElementType currentNumber = arr[0];
 
     for (size_t i = 1; i < len; ++i)
     {
@@ -54,7 +54,7 @@ int main()
         scanResult = scanf("%lu", &arrSize);
     }
 
-    arrType *arr = calloc(arrSize, sizeof(arrType));
+    arrElementType *arr = calloc(arrSize, sizeof(arrElementType));
     if (arr == NULL)
     {
         printf("Error allocating memory for array!\n");
@@ -72,7 +72,7 @@ int main()
         }
     }
 
-    qsort(arr, arrSize, sizeof(arrType), comparatorFunc);
+    qsort(arr, arrSize, sizeof(arrElementType), comparatorFunc);
 
 #ifdef DEBUG
     printf("Sorted array:");
