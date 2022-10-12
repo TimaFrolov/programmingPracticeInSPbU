@@ -3,18 +3,18 @@
 
 #define uint unsigned int
 
-#define arrType short
+#define arrElementType short
 
 #define maxNum 1000
 
-void swap(arrType *a, arrType *b)
+void swap(arrElementType *a, arrElementType *b)
 {
-    arrType tmp = *a;
+    arrElementType tmp = *a;
     *a = *b;
     *b = tmp;
 }
 
-void generate(size_t len, arrType *arr)
+void generate(size_t len, arrElementType *arr)
 {
     for (size_t i = 0; i < len; ++i)
     {
@@ -22,9 +22,9 @@ void generate(size_t len, arrType *arr)
     }
 }
 
-void transform(size_t len, arrType *arr, arrType element)
+void transform(size_t len, arrElementType *arr, arrElementType element)
 {
-    arrType *leftPtr = arr, *rightPtr = arr + len - 1;
+    arrElementType *leftPtr = arr, *rightPtr = arr + len - 1;
 
     while (leftPtr < rightPtr)
     {
@@ -69,7 +69,7 @@ int main()
 
     srand(seed);
 
-    arrType *arr = malloc(arrSize * sizeof(arrType));
+    arrElementType *arr = malloc(arrSize * sizeof(arrElementType));
     if (arr == NULL)
     {
         printf("Error allocating memory for array!\n");

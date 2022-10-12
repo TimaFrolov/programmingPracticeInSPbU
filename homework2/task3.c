@@ -2,18 +2,18 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define arrType int
+#define arrElementType int
 
 // #define DEBUG 1
 
-void swap(arrType *a, arrType *b)
+void swap(arrElementType *a, arrElementType *b)
 {
-    arrType tmp = *a;
+    arrElementType tmp = *a;
     *a = *b;
     *b = tmp;
 }
 
-void bubbleSort(size_t len, arrType *arr)
+void bubbleSort(size_t len, arrElementType *arr)
 {
     for (size_t i = 0; i < len; ++i)
     {
@@ -27,9 +27,9 @@ void bubbleSort(size_t len, arrType *arr)
     }
 }
 
-int countSort(size_t len, arrType *arr)
+int countSort(size_t len, arrElementType *arr)
 {
-    arrType min = arr[0], max = arr[0];
+    arrElementType min = arr[0], max = arr[0];
     for (size_t i = 1; i < len; ++i)
     {
         if (arr[i] < min)
@@ -69,7 +69,7 @@ int test()
 {
     int testResult = 0;
 
-    arrType arr[10] = {10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
+    arrElementType arr[10] = {10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
 
     bubbleSort(10, arr);
     int isTestFailed = 0;
@@ -142,8 +142,8 @@ int main()
         scanResult = scanf("%lu", &arrSize);
     }
 
-    arrType *arr = malloc(arrSize * sizeof(arrType));
-    arrType *arr2 = malloc(arrSize * sizeof(arrType));
+    arrElementType *arr = malloc(arrSize * sizeof(arrElementType));
+    arrElementType *arr2 = malloc(arrSize * sizeof(arrElementType));
     if (arr == NULL || arr2 == NULL)
     {
         printf("Error allocating memory for array!\n");
