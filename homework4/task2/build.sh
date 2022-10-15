@@ -1,0 +1,1 @@
+gcc -Wall -Wextra -std=c99 -g main.c sort.c -o main
