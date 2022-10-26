@@ -42,7 +42,7 @@ int countingSort(size_t len, arrElementType *arr)
             max = arr[i];
         }
     }
-    size_t *nums = malloc(sizeof(size_t) * (max - min + 1));
+    size_t *nums = calloc(max - min + 1, sizeof(size_t));
     if (nums == NULL)
     {
         return -1;
@@ -141,8 +141,8 @@ int main()
         scanResult = scanf("%lu", &arrSize);
     }
 
-    arrElementType *arr = malloc(arrSize * sizeof(arrElementType));
-    arrElementType *arr2 = malloc(arrSize * sizeof(arrElementType));
+    arrElementType *arr = calloc(arrSize, sizeof(arrElementType));
+    arrElementType *arr2 = calloc(arrSize, sizeof(arrElementType));
     if (arr == NULL || arr2 == NULL)
     {
         printf("Error allocating memory for array!\n");
