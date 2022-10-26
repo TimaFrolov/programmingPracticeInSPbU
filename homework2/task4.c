@@ -22,7 +22,7 @@ void generate(size_t len, arrElementType *arr)
     }
 }
 
-void transform(size_t len, arrElementType *arr, arrElementType element)
+void partition(size_t len, arrElementType *arr, arrElementType element)
 {
     arrElementType *leftPtr = arr, *rightPtr = arr + len - 1;
 
@@ -84,8 +84,8 @@ int main()
     }
     printf("\n");
 
-    transform(arrSize, arr, arr[0]);
-    transform(arrSize, arr, arr[0]-1);
+    partition(arrSize, arr, arr[0]);
+    partition(arrSize, arr, arr[0]-1);
 
     printf("Transformed array:");
     for (size_t i = 0; i < arrSize; ++i)
