@@ -28,7 +28,7 @@ void bubbleSort(size_t len, arrElementType *arr)
     }
 }
 
-int countSort(size_t len, arrElementType *arr)
+int countingSort(size_t len, arrElementType *arr)
 {
     arrElementType min = arr[0], max = arr[0];
     for (size_t i = 1; i < len; ++i)
@@ -107,7 +107,7 @@ int test2()
     }
     arr[6] = 10;
 
-    countSort(10, arr);
+    countingSort(10, arr);
     bool isTestFailed = false;
 
     for (int i = 0; i < 10; ++i)
@@ -189,7 +189,7 @@ int main()
     free(arr);
 
     const clock_t clockAtStartCount = clock();
-    int errorCode = countSort(arrSize, arr2);
+    int errorCode = countingSort(arrSize, arr2);
     if (errorCode == -1)
     {
         printf("Error allocating memory for array!\n");
