@@ -52,17 +52,17 @@ int main()
             break;
         }
 
-        const clock_t clockAtStartIt = clock();
-        const uint ansIt = iterativeFibbonaci(n);
-        const clock_t clockAtEndIt = clock();
+        const clock_t clockAtStartIterative = clock();
+        const uint ansIterative = iterativeFibbonaci(n);
+        const clock_t clockAtEndIterative = clock();
 
-        printf("Iterative method took %.3f seconds! Answer is %u\n", (float)(clockAtEndIt - clockAtStartIt) / CLOCKS_PER_SEC, ansIt);
+        printf("Iterative method took %.3f seconds! Answer is %u\n", (float)(clockAtEndIterative - clockAtStartIterative) / CLOCKS_PER_SEC, ansIterative);
 
-        const clock_t clockAtStartRe = clock();
-        const uint ansRe = recursiveFibbonaci(n);
-        const clock_t clockAtEndRe = clock();
+        const clock_t clockAtStartRecursive = clock();
+        const uint ansRecursive = recursiveFibbonaci(n);
+        const clock_t clockAtEndRecursive = clock();
 
-        printf("Recursive method took %.3f seconds! Answer is %u\n", (float)(clockAtEndRe - clockAtStartRe) / CLOCKS_PER_SEC, ansRe);
+        printf("Recursive method took %.3f seconds! Answer is %u\n", (float)(clockAtEndRecursive - clockAtStartRecursive) / CLOCKS_PER_SEC, ansRecursive);
     }
     return 0;
 }
