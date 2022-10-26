@@ -4,7 +4,7 @@
 
 #define uint unsigned int
 
-uint rfib(uint n)
+uint recursiveFibbonaci(uint n)
 {
     if (n == 0)
     {
@@ -16,10 +16,10 @@ uint rfib(uint n)
         return 1;
     }
 
-    return rfib(n - 1) + rfib(n - 2);
+    return recursiveFibbonaci(n - 1) + recursiveFibbonaci(n - 2);
 }
 
-uint ifib(uint n)
+uint iterativeFibbonaci(uint n)
 {
     uint latestNumber = 0, preLatestNumber = 1;
 
@@ -53,13 +53,13 @@ int main()
         }
 
         const clock_t clockAtStartIt = clock();
-        const uint ansIt = ifib(n);
+        const uint ansIt = iterativeFibbonaci(n);
         const clock_t clockAtEndIt = clock();
 
         printf("Iterative method took %.3f seconds! Answer is %u\n", (float)(clockAtEndIt - clockAtStartIt) / CLOCKS_PER_SEC, ansIt);
 
         const clock_t clockAtStartRe = clock();
-        const uint ansRe = rfib(n);
+        const uint ansRe = recursiveFibbonaci(n);
         const clock_t clockAtEndRe = clock();
 
         printf("Recursive method took %.3f seconds! Answer is %u\n", (float)(clockAtEndRe - clockAtStartRe) / CLOCKS_PER_SEC, ansRe);
