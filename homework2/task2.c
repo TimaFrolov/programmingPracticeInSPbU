@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 #define uint unsigned int
 
@@ -38,9 +39,9 @@ powType fastPower(powType base, uint power)
 }
 
 #ifdef DEBUG
-int test(void)
+bool test()
 {
-    int testResult = 0;
+    bool testResult = true;
 
     for (powType base = 1; base < 10; base += 1)
     {
@@ -49,7 +50,7 @@ int test(void)
             if (fastPower(base, power) != slowPower(base, power))
             {
                 printf("Test falied! base = %f, power = %d, fastPower = %f, slowPower = %f\n", base, power, fastPower(base, power), slowPower(base, power));
-                testResult = -1;
+                testResult = false;
             }
         }
     }
