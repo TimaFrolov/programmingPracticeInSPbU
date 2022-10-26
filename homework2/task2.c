@@ -89,12 +89,12 @@ int main()
         scanResult = scanf("%f", &base);
     }
 
-    printf("Enter exponent power (natural number): ");
+    printf("Enter exponent power (integer number): ");
     scanResult = scanf("%d", &power);
     while (scanResult == 0)
     {
         scanf("%*[^\n]");
-        printf("Wrong input! Please enter natural number: ");
+        printf("Wrong input! Please enter integer number: ");
         scanResult = scanf("%d", &power);
     }
 
