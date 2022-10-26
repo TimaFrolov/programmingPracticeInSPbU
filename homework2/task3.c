@@ -66,25 +66,24 @@ int countingSort(size_t len, arrElementType *arr)
 }
 
 #ifdef DEBUG
-int test1()
+bool test1()
 {
-    int testResult = 0;
+    bool testResult = true;
 
     arrElementType arr[10] = {10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
 
     bubbleSort(10, arr);
-    bool isTestFailed = false;
 
     for (int i = 0; i < 10; ++i)
     {
         if (arr[i] != i + 1)
         {
-            isTestFailed = true;
+            testResult = false;
             break;
         }
     }
 
-    if (isTestFailed)
+    if (!testResult)
     {
         printf("Test failed! Initial array = {10, 9, 8, 7, 6, 5, 4, 3, 2, 1}. Array after bubble sort: {");
         for (int i = 0; i < 9; ++i)
@@ -92,29 +91,27 @@ int test1()
             printf("%d, ", arr[i]);
         }
         printf("%d}\n", arr[9]);
-        testResult = -1;
     }
     return testResult;
 }
-int test2()
+bool test2()
 {
-    int testResult = 0;
+    bool testResult = true;
 
     arrElementType arr[10] = {10, 9, 8, 7, 6, 5, 10, 3, 2, 1};
 
     countingSort(10, arr);
-    bool isTestFailed = false;
 
     for (int i = 0; i < 10; ++i)
     {
         if ((i < 3 && arr[i] != i + 1) || (i == 3 && arr[i] != 5) || (i > 3 && i < 8 && arr[i] != i + 2) || (i >= 8 && arr[i] != 10))
         {
-            isTestFailed = true;
+            testResult = false;
             break;
         }
     }
 
-    if (isTestFailed)
+    if (!testResult)
     {
         printf("Test failed! Initial array = {10, 9, 8, 7, 6, 5, 10, 3, 2, 1}. Array after count sort: {");
         for (int i = 0; i < 9; ++i)
@@ -122,7 +119,6 @@ int test2()
             printf("%d, ", arr[i]);
         }
         printf("%d}\n", arr[9]);
-        testResult = -1;
     }
 
     return testResult;
