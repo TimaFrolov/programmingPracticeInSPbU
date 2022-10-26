@@ -43,6 +43,8 @@ void partition(size_t len, arrElementType *arr, arrElementType element)
             swap(leftPtr, rightPtr);
         }
     }
+
+    swap(arr, leftPtr - 1);
 }
 
 int main()
@@ -85,7 +87,6 @@ int main()
     printf("\n");
 
     partition(arrSize, arr, arr[0]);
-    partition(arrSize, arr, arr[0]-1);
 
     printf("Transformed array:");
     for (size_t i = 0; i < arrSize; ++i)
