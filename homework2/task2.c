@@ -2,25 +2,33 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-#define uint unsigned int
-
 #define powType float
 
 // #define DEBUG 1
 
-powType slowPower(powType base, uint power)
+powType slowPower(powType base, int power)
 {
+    if (power < 0)
+    {
+        base = 1 / base;
+        power = -power;
+    }
     powType ans = 1;
-    for (uint i = 0; i < power; ++i)
+    for (int i = 0; i < power; ++i)
     {
         ans *= base;
     }
     return ans;
 }
 
-powType fastPower(powType base, uint power)
+powType fastPower(powType base, int power)
 {
-    uint powerOfTwo = 1;
+    if (power < 0)
+    {
+        base = 1 / base;
+        power = -power;
+    }
+    int powerOfTwo = 1;
 
     powType powerOfBase = base;
     powType ans = 1;
@@ -45,7 +53,7 @@ bool test()
 
     for (powType base = 1; base < 10; base += 1)
     {
-        for (uint power = 1; power < 10; ++power)
+        for (int power = 1; power < 10; ++power)
         {
             if (fastPower(base, power) != slowPower(base, power))
             {
@@ -65,7 +73,7 @@ int main()
     printf("Test result = %d\n", test());
 #endif
     powType base = 1;
-    uint power = 1;
+    int power = 1;
 
     printf("Enter exponent base (floating point number):");
     int scanResult = scanf("%f", &base);
@@ -77,12 +85,12 @@ int main()
     }
 
     printf("Enter exponent power (natural number): ");
-    scanResult = scanf("%u", &power);
+    scanResult = scanf("%d", &power);
     while (scanResult == 0)
     {
         scanf("%*[^\n]");
         printf("Wrong input! Please enter natural number: ");
-        scanResult = scanf("%u", &power);
+        scanResult = scanf("%d", &power);
     }
 
     printf("%.3f to the power of %d = %.3f\n", base, power, fastPower(base, power));
