@@ -7,7 +7,7 @@
 
 // #define DEBUG 1
 
-powType slowpow(powType base, uint power)
+powType slowPower(powType base, uint power)
 {
     powType ans = 1;
     for (uint i = 0; i < power; ++i)
@@ -17,7 +17,7 @@ powType slowpow(powType base, uint power)
     return ans;
 }
 
-powType fastpow(powType base, uint power)
+powType fastPower(powType base, uint power)
 {
     uint powerOfTwo = 1;
 
@@ -46,9 +46,9 @@ int test(void)
     {
         for (uint power = 1; power < 10; ++power)
         {
-            if (fastpow(base, power) != slowpow(base, power))
+            if (fastPower(base, power) != slowPower(base, power))
             {
-                printf("Test falied! base = %f, power = %d, fastpow = %f, slowpow = %f\n", base, power, fastpow(base, power), slowpow(base, power));
+                printf("Test falied! base = %f, power = %d, fastPower = %f, slowPower = %f\n", base, power, fastPower(base, power), slowPower(base, power));
                 testResult = -1;
             }
         }
@@ -84,6 +84,6 @@ int main()
         scanResult = scanf("%u", &power);
     }
 
-    printf("%.3f to the power of %d = %.3f\n", base, power, fastpow(base, power));
+    printf("%.3f to the power of %d = %.3f\n", base, power, fastPower(base, power));
     return 0;
 }
