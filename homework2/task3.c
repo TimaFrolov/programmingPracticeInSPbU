@@ -101,11 +101,6 @@ int test2()
     int testResult = 0;
 
     arrElementType arr[10] = {10, 9, 8, 7, 6, 5, 10, 3, 2, 1};
-    for (int i = 0; i < 10; ++i)
-    {
-        arr[i] = 10 - i;
-    }
-    arr[6] = 10;
 
     countingSort(10, arr);
     bool isTestFailed = false;
