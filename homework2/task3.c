@@ -42,25 +42,25 @@ int countingSort(size_t len, arrElementType *arr)
             max = arr[i];
         }
     }
-    size_t *nums = calloc(max - min + 1, sizeof(size_t));
-    if (nums == NULL)
+    size_t *amountsOfValue = calloc(max - min + 1, sizeof(size_t));
+    if (amountsOfValue == NULL)
     {
         return -1;
     }
 
     for (size_t i = 0; i < len; ++i)
     {
-        nums[arr[i] - min]++;
+        amountsOfValue[arr[i] - min]++;
     }
 
     for (size_t i = 0, j = 0; i < len; ++i)
     {
-        while (nums[j] == 0)
+        while (amountsOfValue[j] == 0)
             ++j;
         arr[i] = j + min;
-        --nums[j];
+        --amountsOfValue[j];
     }
-    free(nums);
+    free(amountsOfValue);
 
     return 0;
 }
