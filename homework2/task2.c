@@ -6,6 +6,11 @@
 
 // #define DEBUG 1
 
+float absolute(float x)
+{
+    return x >= 0 ? x : -x;
+}
+
 powType slowPower(powType base, int power)
 {
     if (power < 0)
@@ -53,9 +58,9 @@ bool test()
 
     for (powType base = 1; base < 10; base += 1)
     {
-        for (int power = 1; power < 10; ++power)
+        for (int power = -10; power < 10; ++power)
         {
-            if (fastPower(base, power) != slowPower(base, power))
+            if (absolute(fastPower(base, power) - slowPower(base, power)) > 1e-5)
             {
                 printf("Test falied! base = %f, power = %d, fastPower = %f, slowPower = %f\n", base, power, fastPower(base, power), slowPower(base, power));
                 testResult = false;
