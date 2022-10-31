@@ -4,7 +4,7 @@
 
 #define arrElementType int
 
-#define DEBUG 1
+// #define DEBUG 1
 
 void swap(arrElementType *a, arrElementType *b)
 {
@@ -87,23 +87,22 @@ void sort(size_t len, arrElementType *arr)
 }
 
 #ifdef DEBUG
-int test1()
+bool test1()
 {
-    int testResult = 0;
+    bool testResult = true;
 
     int arr[] = {6, 9, 16, 8, 3, 19, 11, 18, 10, 20, 15, 17, 7, 12, 4, 2, 14, 13, 1, 5};
     sort(20, arr);
-    bool isTestFailed = false;
     for (int i = 0; i < 20; ++i)
     {
         if (arr[i] != i + 1)
         {
-            isTestFailed = true;
+            testResult = false;
             break;
         }
     }
 
-    if (isTestFailed)
+    if (!testResult)
     {
         printf("Test failed! Initial array = {6, 9, 16, 8, 3, 19, 11, 18, 10, 20, 15, 17, 7, 12, 4, 2, 14, 13, 1, 5}. Array after sort: {");
         for (int i = 0; i < 19; ++i)
@@ -111,27 +110,26 @@ int test1()
             printf("%d, ", arr[i]);
         }
         printf("%d}\n", arr[19]);
-        testResult = -2;
     }
 
     return testResult;
 }
-int test2()
+
+bool test2()
 {
-    int testResult = 0;
+    bool testResult = true;
 
     int arr2[] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
     sort(12, arr2);
-    bool isTestFailed = false;
     for (int i = 0; i < 12; ++i)
     {
         if (arr2[i] != 1)
         {
-            isTestFailed = true;
+            testResult = false;
             break;
         }
     }
-    if (isTestFailed)
+    if (!testResult)
     {
         printf("Test failed! Initial array = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}. Array after sort: {");
         for (int i = 0; i < 11; ++i)
@@ -139,7 +137,6 @@ int test2()
             printf("%d, ", arr2[i]);
         }
         printf("%d}\n", arr2[12]);
-        testResult = -2;
     }
 
     return testResult;
