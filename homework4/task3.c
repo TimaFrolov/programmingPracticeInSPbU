@@ -208,11 +208,6 @@ int main()
         {
             printf("Given file contains incorrect data! Working with new database instead\n");
         }
-        else if (readCode == -5)
-        {
-            printf("Given file contains incorrect data!\n");
-            return -5;
-        }
     }
 
     signed char command = readCommand();
