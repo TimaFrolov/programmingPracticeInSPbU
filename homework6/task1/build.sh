@@ -1,0 +1,1 @@
+gcc -fdiagnostics-color=always -Wall -Wextra -std=c99 -g main.c list.c -o main
