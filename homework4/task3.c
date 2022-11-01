@@ -188,6 +188,7 @@ int main()
     scanf("%s", fileName);
     while (fileName[100] != 0)
     {
+        scanf("%*[^\n]");
         printf("Wrong input! Enter no more than 100 symbols: ");
         for (size_t i = 0; i < 101; ++i)
         {
