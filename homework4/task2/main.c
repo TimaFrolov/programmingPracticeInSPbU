@@ -66,4 +66,5 @@ int main()
     sort(arrSize, arr);
 
     printf("Most common value in array: %d\n", find(arrSize, arr));
+    return 0;
 }

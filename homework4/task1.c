@@ -44,4 +44,6 @@ int main()
     print_binary(firstNumber + secondNumber);
     printf("\n");
     printf("Сумма чисел: %d\n", firstNumber + secondNumber);
+
+    return 0;
 }

@@ -245,4 +245,5 @@ int main()
     }
 
     free(fileName);
+    return 0;
 }
