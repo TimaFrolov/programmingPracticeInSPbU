@@ -6,13 +6,14 @@ typedef enum
 {
     OK = 0,
     MemoryAllocationError = -1,
-    IncorrectInput = -2
+    IncorrectInput = -2,
+    FileIsNULL = -3
 } Error;
 
 typedef struct Tree Tree;
 
 // Create arithmetic expression parse tree from given file
-// Possible errors: MemoryAllocationError, IncorrectInput, OK
+// Possible errors: MemoryAllocationError, IncorrectInput, FileIsNULL, OK
 Error createTreeFromFile(Tree **treePtr, FILE *file);
 
 // Remove all elements from given tree, use free(tree)

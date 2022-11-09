@@ -22,6 +22,11 @@ int main()
 
     switch (createResult)
     {
+    case FileIsNULL:
+    {
+        printf("No such file!\n");
+        return 0;
+    }
     case MemoryAllocationError:
     {
         printf("Error allocating memory!\n");

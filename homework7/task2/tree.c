@@ -22,6 +22,10 @@ typedef struct Tree
 
 Error createTreeFromFile(Tree **treePtr, FILE *file)
 {
+    if (file == NULL) {
+        return FileIsNULL;
+    }
+
     *treePtr = calloc(1, sizeof(Tree));
     if (*treePtr == NULL)
     {
