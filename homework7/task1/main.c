@@ -7,6 +7,11 @@
 int main()
 {
     Map *map = createMap();
+    if (map == NULL)
+    {
+        printf("Error allocating memory!\n");
+        return -1;
+    }
 
     byte command = 0;
     do
@@ -36,6 +41,7 @@ int main()
             if (value == NULL)
             {
                 printf("Error allocating memory!\n");
+                free(map);
                 return -1;
             }
             printf("Enter value (string no longer than 100 symbols) to add to map: ");
@@ -54,6 +60,7 @@ int main()
             if (insertResult == MemoryAllocationError)
             {
                 printf("Error allocating memory!\n");
+                free(map);
                 return -1;
             }
             printf("Value was succesfully added to map!\n");
@@ -76,6 +83,7 @@ int main()
             if (getResult == MemoryAllocationError)
             {
                 printf("Error allocating memory!\n");
+                free(map);
                 return -1;
             }
             if (value == NULL)
