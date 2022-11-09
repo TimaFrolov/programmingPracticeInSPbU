@@ -97,7 +97,7 @@ int main()
         }
         case 3:
         {
-            printf("Enter key (integer number) to check in map: ");
+            printf("Enter key (integer number) to check if it is in map: ");
             int key = 0;
             int scanResult = scanf("%d", &key);
             while (scanResult == 0)
