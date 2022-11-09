@@ -19,16 +19,21 @@ int main()
     FILE *file = fopen(fileName, "r");
     Tree *tree;
     Error createResult = createTreeFromFile(&tree, file);
-    if (createResult == MemoryAllocationError)
+
+    switch (createResult)
+    {
+    case MemoryAllocationError:
     {
         printf("Error allocating memory!\n");
         return -1;
     }
-    if (createResult == IncorrectInput)
+    case IncorrectInput:
     {
         printf("Incorrect data in file!\n");
         return 0;
     }
+    }
+
     printf("Tree written from file: ");
     printTree(tree, stdout);
     printf("\nEvaluated value from this tree: %d\n", evaluateTree(tree));
