@@ -6,7 +6,7 @@
 typedef struct List List;
 
 // Create list, allocating for values elementSize bytes
-// Error codes: -1 = error allocating memory, -4 = elementSize is 0, 0 = OK
+// Error codes: -1 = error allocating memory, -4 = elementSize is 0, -5 = <list> is NULL, 0 = OK
 int createList(List **list, size_t elementSize);
 
 // Put size of element of <list> to <elementSize>

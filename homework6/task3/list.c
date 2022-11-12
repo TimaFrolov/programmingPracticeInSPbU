@@ -18,12 +18,15 @@ typedef struct List
 
 int createList(List **list, size_t elementSize)
 {
+    if (list == NULL) {
+        return -5;
+    }
     if (elementSize == 0)
     {
         return -4;
     }
     *list = calloc(1, sizeof(List));
-    if (list == NULL)
+    if (*list == NULL)
     {
         return -1;
     }
