@@ -14,7 +14,7 @@ int createList(List **list, size_t elementSize);
 int listElementSize(List *list, size_t *elementSize);
 
 // Add an element to list
-// Error codes: -1 = error allocating memory, -2 = list is NULL, -4 = elementSize is 0, -5 = value is NULL, 0 = OK
+// Error codes: -1 = error allocating memory, -2 = list is NULL, -5 = value is NULL, 0 = OK
 int listAppend(List *list, void *value);
 
 // Divide list into two sublists

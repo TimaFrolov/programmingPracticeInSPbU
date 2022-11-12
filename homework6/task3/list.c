@@ -51,10 +51,6 @@ int listAppend(List *list, void *value)
     {
         return -2;
     }
-    if (list->elementSize == 0)
-    {
-        return -4;
-    }
     if (value == NULL)
     {
         return -5;
