@@ -6,7 +6,7 @@
 typedef struct Stack Stack;
 
 // Create stack, allocating for values elementSize bytes
-// Error codes: -1 = error allocating memory, -4 = elementSize is 0, 0 = OK
+// Error codes: -1 = error allocating memory, -4 = elementSize is 0, -5 = stack is NULL, 0 = OK
 int createStack(Stack **stack, size_t elementSize);
 
 // Add an element to stack

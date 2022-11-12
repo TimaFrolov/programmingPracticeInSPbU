@@ -17,6 +17,9 @@ typedef struct Stack
 
 int createStack(Stack **stack, size_t elementSize)
 {
+    if (stack == NULL) {
+        return -5;
+    }
     if (elementSize == 0)
     {
         return -4;
