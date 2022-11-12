@@ -6,7 +6,7 @@
 typedef struct SortedList SortedList;
 
 // Create ordered list of integers
-// Error codes: -1 = error allocating memory, 0 = OK
+// Error codes: -1 = error allocating memory, -2 = list is NULL, 0 = OK
 int createList(SortedList **list);
 
 // Append element to list
