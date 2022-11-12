@@ -16,6 +16,9 @@ typedef struct CyclicList
 
 Error createList(CyclicList **list)
 {
+    if (list == NULL) {
+        return ListIsNULL;
+    }
     *list = calloc(1, sizeof(CyclicList));
     return (*list == NULL) ? MemoryAllocationError : OK;
 }

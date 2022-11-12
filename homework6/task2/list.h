@@ -11,7 +11,7 @@ typedef enum Error
 typedef struct CyclicList CyclicList;
 
 // Create cyclic list of integers
-// Possible errors: MemoryAllocationError
+// Possible errors: MemoryAllocationError, ListIsNULL
 Error createList(CyclicList **list);
 
 // Insert <value> to list at <index>
