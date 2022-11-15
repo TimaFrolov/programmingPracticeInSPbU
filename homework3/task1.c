@@ -2,18 +2,16 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-#define arrElementType int
-
 // #define DEBUG 1
 
-void swap(arrElementType *a, arrElementType *b)
+void swap(int *a, int *b)
 {
-    const arrElementType tmp = *a;
+    const int tmp = *a;
     *a = *b;
     *b = tmp;
 }
 
-void insertionSort(size_t len, arrElementType *arr)
+void insertionSort(size_t len, int *arr)
 {
     for (size_t i = 1; i < len; ++i)
     {
@@ -30,7 +28,7 @@ void insertionSort(size_t len, arrElementType *arr)
     }
 }
 
-size_t partition(size_t len, arrElementType *arr)
+size_t partition(size_t len, int *arr)
 {
     const size_t center = len / 2;
 
@@ -43,7 +41,7 @@ size_t partition(size_t len, arrElementType *arr)
         swap(arr + center, arr + len - 1);
     }
 
-    const arrElementType pivot = arr[center];
+    const int pivot = arr[center];
     size_t leftIndex = 0, rightIndex = len - 1;
 
     while (leftIndex < rightIndex)
@@ -67,7 +65,7 @@ size_t partition(size_t len, arrElementType *arr)
     return leftIndex;
 }
 
-void sort(size_t len, arrElementType *arr)
+void sort(size_t len, int *arr)
 {
     if (len <= 10)
     {
@@ -159,7 +157,7 @@ int main()
         scanResult = scanf("%lu", &arrSize);
     }
 
-    arrElementType *arr = calloc(arrSize, sizeof(arrElementType));
+    int *arr = calloc(arrSize, sizeof(int));
     if (arr == NULL)
     {
         printf("Error allocating memory for array!\n");
