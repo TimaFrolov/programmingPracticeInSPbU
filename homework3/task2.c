@@ -19,7 +19,7 @@ int comparatorFunc(const void *a, const void *b)
     return (*(int *)a > *(int *)b) - (*(int *)a < *(int *)b);
 }
 
-bool binarySearch(size_t len, int *arr, int randomNumber)
+bool binarySearch(size_t len, int *arr, int value)
 {
     size_t leftIndex = 0, rightIndex = len - 1;
 
@@ -27,11 +27,11 @@ bool binarySearch(size_t len, int *arr, int randomNumber)
     {
         const size_t centerIndex = (leftIndex + rightIndex) / 2;
 
-        if (arr[centerIndex] == randomNumber)
+        if (arr[centerIndex] == value)
         {
             return 1;
         }
-        if (arr[centerIndex] < randomNumber)
+        if (arr[centerIndex] < value)
         {
             leftIndex = centerIndex + 1;
         }
@@ -40,7 +40,7 @@ bool binarySearch(size_t len, int *arr, int randomNumber)
             rightIndex = centerIndex - 1;
         }
     }
-    return arr[leftIndex] == randomNumber;
+    return arr[leftIndex] == value;
 }
 
 int main()
