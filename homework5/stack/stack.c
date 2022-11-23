@@ -25,7 +25,7 @@ int createStack(Stack **stack, size_t elementSize)
         return -4;
     }
     *stack = calloc(1, sizeof(Stack));
-    if (stack == NULL)
+    if (*stack == NULL)
     {
         return -1;
     }
