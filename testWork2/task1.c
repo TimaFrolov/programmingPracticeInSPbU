@@ -2,7 +2,7 @@
 
 int getNextDate(FILE *file)
 {
-    while (1)
+    while (!feof(file))
     {
         short curChar = fgetc(file);
         if (curChar == -1)
@@ -35,6 +35,7 @@ int getNextDate(FILE *file)
         }
         return day + month * 100 + year * 10000;
     }
+    return -1;
 }
 
 int main()
