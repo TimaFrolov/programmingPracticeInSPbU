@@ -6,7 +6,7 @@ int main()
 {
     char filename[101] = {0};
     printf("Enter file path (no longer than 100 symbols): ");
-    scanf("%s", filename);
+    scanf("%100s", filename);
 
     FILE *file = fopen(filename, "r");
     if (file == NULL)
@@ -27,7 +27,7 @@ int main()
     char buffer[1000] = {0};
     while (!feof(file))
     {
-        fscanf(file, "%s", buffer);
+        fscanf(file, "%1000s", buffer);
         size_t curAmount = 0;
         hashMapGet(hashMap, buffer, 0, &curAmount);
         Error insertionError = hashMapInsert(hashMap, buffer, curAmount + 1);
