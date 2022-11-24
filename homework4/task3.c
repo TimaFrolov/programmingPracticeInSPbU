@@ -3,7 +3,7 @@
 #include <string.h>
 #include <stdbool.h>
 
-#define MAX_RECORDS 100UL
+#define MAX_RECORDS 100
 
 typedef struct Record
 {
