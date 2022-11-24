@@ -45,17 +45,7 @@ int main()
                 return -1;
             }
             printf("Enter value (string no longer than 100 symbols) to add to map: ");
-            scanf("%s", value);
-            while (value[100] != '\0')
-            {
-                scanf("%*[^\n]");
-                printf("Given string is too long! Please try again: ");
-                for (size_t i = 0; i < 101; ++i)
-                {
-                    value[i] = '\0';
-                }
-                scanf("%s", value);
-            }
+            scanf("%100s", value);
             Error insertResult = mapInsert(&map, key, value);
             if (insertResult == MemoryAllocationError)
             {
