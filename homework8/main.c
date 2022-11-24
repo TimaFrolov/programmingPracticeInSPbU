@@ -34,29 +34,9 @@ int main()
                 return -1;
             }
             printf("Enter key (string no longer than 100 symbols) to add to map: ");
-            scanf("%s", key);
-            while (key[100] != '\0')
-            {
-                scanf("%*[^\n]");
-                printf("Given string is too long! Please try again: ");
-                for (size_t i = 0; i < 101; ++i)
-                {
-                    key[i] = '\0';
-                }
-                scanf("%s", key);
-            }
+            scanf("%100s", key);
             printf("Enter value (string no longer than 100 symbols) to add to map: ");
-            scanf("%s", value);
-            while (value[100] != '\0')
-            {
-                scanf("%*[^\n]");
-                printf("Given string is too long! Please try again: ");
-                for (size_t i = 0; i < 101; ++i)
-                {
-                    value[i] = '\0';
-                }
-                scanf("%s", value);
-            }
+            scanf("%100s", value);
             Error insertResult = mapInsert(&map, key, value);
             if (insertResult == MemoryAllocationError)
             {
@@ -77,17 +57,7 @@ int main()
                 return -1;
             }
             printf("Enter key (string no longer than 100 symbols) to get value from map: ");
-            scanf("%s", key);
-            while (key[100] != '\0')
-            {
-                scanf("%*[^\n]");
-                printf("Given string is too long! Please try again: ");
-                for (size_t i = 0; i < 101; ++i)
-                {
-                    key[i] = '\0';
-                }
-                scanf("%s", key);
-            }
+            scanf("%100s", key);
             char *value = NULL;
             Error getResult = mapGet(map, key, &value);
             if (getResult == MemoryAllocationError)
@@ -114,18 +84,7 @@ int main()
                 return -1;
             }
             printf("Enter key (string no longer than 100 symbols) to check if it is in map: ");
-            scanf("%s", key);
-            while (key[100] != '\0')
-            {
-                scanf("%*[^\n]");
-                printf("Given string is too long! Please try again: ");
-                for (size_t i = 0; i < 101; ++i)
-                {
-                    key[i] = '\0';
-                }
-                scanf("%s", key);
-            }
-
+            scanf("%100s", key);
 
             if (mapContains(map, key))
             {
@@ -145,17 +104,7 @@ int main()
                 return -1;
             }
             printf("Enter key (string no longer than 100 symbols) to remove from map: ");
-            scanf("%s", key);
-            while (key[100] != '\0')
-            {
-                scanf("%*[^\n]");
-                printf("Given string is too long! Please try again: ");
-                for (size_t i = 0; i < 101; ++i)
-                {
-                    key[i] = '\0';
-                }
-                scanf("%s", key);
-            }
+            scanf("%100s", key);
 
             map = mapPop(map, key);
             printf("Removed given key from map!\n");
