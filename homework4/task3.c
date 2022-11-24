@@ -33,9 +33,9 @@ void executeCommand1(Record **records, size_t *lastRecord)
         return;
     }
     printf("Enter phone number (no longer than 15 symbols, without spaces): ");
-    scanf("%s", records[*lastRecord]->phoneNumber);
+    scanf("%15s", records[*lastRecord]->phoneNumber);
     printf("Enter name (no longer than 50 symbols, without spaces): ");
-    scanf("%s", records[*lastRecord]->name);
+    scanf("%50s", records[*lastRecord]->name);
     ++*lastRecord;
 }
 
@@ -51,7 +51,7 @@ void executeCommand3(Record **records, size_t lastRecord)
 {
     printf("Enter name to find (no longer than 50 symbols): ");
     char name[51] = {0};
-    scanf("%s", name);
+    scanf("%50s", name);
 
     bool found = false;
 
@@ -75,7 +75,7 @@ void executeCommand4(Record **records, size_t lastRecord)
 
     printf("Enter phone number to find (no longer than 15 symbols, without spaces): ");
     char phoneNumber[16] = {0};
-    scanf("%s", phoneNumber);
+    scanf("%15s", phoneNumber);
 
     bool found = false;
 
@@ -98,16 +98,7 @@ int executeCommand5(Record **records, size_t lastRecord, char **fileName)
 {
     char tmp[101] = {0};
     printf("Enter file name (or enter \"0\" to save data to previous file): ");
-    scanf("%s", tmp);
-    while (tmp[100] != 0)
-    {
-        printf("Wrong input! Enter no more than 100 symbols: ");
-        for (size_t i = 0; i < 101; ++i)
-        {
-            tmp[i] = 0;
-        }
-        scanf("%s", tmp);
-    }
+    scanf("%100s", tmp);
 
     if (strcmp(tmp, "0"))
     {
@@ -139,9 +130,9 @@ int readDataFromFile(Record **records, char *fileName, size_t *lastRecord)
     char tmp[17] = {0};
     char heading[] = "phoneNumber\tname";
 
-    fscanf(file, "%s", tmp);
+    fscanf(file, "%11s", tmp);
     tmp[11] = '\t';
-    fscanf(file, "%s", tmp + 12);
+    fscanf(file, "%4s", tmp + 12);
 
     if (strcmp(heading, tmp))
     {
@@ -185,17 +176,7 @@ int main()
     size_t lastRecord = 0;
 
     printf("Enter file path (no longer than 100 symbols) or enter \"0\" to work with new database: ");
-    scanf("%s", fileName);
-    while (fileName[100] != 0)
-    {
-        scanf("%*[^\n]");
-        printf("Wrong input! Enter no more than 100 symbols: ");
-        for (size_t i = 0; i < 101; ++i)
-        {
-            fileName[i] = 0;
-        }
-        scanf("%s", fileName);
-    }
+    scanf("%100s", fileName);
 
     if (strcmp(fileName, "0"))
     {
