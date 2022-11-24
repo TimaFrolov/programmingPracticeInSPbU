@@ -5,16 +5,7 @@ int main()
 {
     char fileName[101] = {0};
     printf("Enter file path (no longer than 100 symbols): ");
-    int scanResult = scanf("%s", fileName);
-    while (scanResult == 0 || fileName[100] != 0)
-    {
-        printf("Incorrect input! Enter no more than 100 symbols: ");
-        for (size_t i = 0; i < 101; ++i)
-        {
-            fileName[i] = 0;
-        }
-        scanResult = scanf("%s", fileName);
-    }
+    scanf("%100s", fileName);
 
     FILE *file = fopen(fileName, "r");
     Tree *tree;
