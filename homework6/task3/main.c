@@ -141,17 +141,7 @@ int main()
 
     char fileName[101] = {'\0'};
     printf("Enter file path (no longer than 100 symbols): ");
-    scanf("%s", fileName);
-    while (fileName[100] != 0)
-    {
-        scanf("%*[^\n]");
-        printf("Wrong input! Enter no more than 100 symbols: ");
-        for (size_t i = 0; i < 101; ++i)
-        {
-            fileName[i] = 0;
-        }
-        scanf("%s", fileName);
-    }
+    scanf("%100s", fileName);
 
     int readCode = readDataFromFile(list, fileName);
     if (readCode == -3)
