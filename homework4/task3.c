@@ -111,7 +111,7 @@ int executeCommand5(Record **records, size_t lastRecord, char **fileName)
 
     if (strcmp(tmp, "0"))
     {
-        strcpy(tmp, *fileName);
+        strcpy(*fileName, tmp);
     }
 
     FILE *file = fopen(*fileName, "w");
