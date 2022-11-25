@@ -22,7 +22,8 @@ typedef struct Tree
 
 Error createTreeFromFile(Tree **treePtr, FILE *file)
 {
-    if (file == NULL) {
+    if (file == NULL)
+    {
         return FileIsNULL;
     }
 
