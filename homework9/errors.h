@@ -1,6 +1,7 @@
 #pragma once
 
-typedef enum Error {
+typedef enum Error
+{
     OK = 0,
     MemoryAllocationError = -1,
     ListIsNULL = -2,

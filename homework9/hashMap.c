@@ -212,7 +212,7 @@ Error hashMapGet(HashMap *hashMap, char *key, size_t _default, size_t *value)
 Error hashMapPop(HashMap *hashMap, char *key)
 {
     if (hashMap == NULL)
-    { 
+    {
         return HashMapIsNULL;
     }
     if (key == NULL)
