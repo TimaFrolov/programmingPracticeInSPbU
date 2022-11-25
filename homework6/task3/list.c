@@ -18,7 +18,8 @@ typedef struct List
 
 int createList(List **list, size_t elementSize)
 {
-    if (list == NULL) {
+    if (list == NULL)
+    {
         return -5;
     }
     if (elementSize == 0)

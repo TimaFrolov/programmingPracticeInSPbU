@@ -16,7 +16,8 @@ typedef struct SortedList
 
 int createList(SortedList **list)
 {
-    if (list == NULL) {
+    if (list == NULL)
+    {
         return -2;
     }
     *list = calloc(1, sizeof(SortedList));
