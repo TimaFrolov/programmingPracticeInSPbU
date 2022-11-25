@@ -262,7 +262,8 @@ bool mapContains(Map *map, char *key)
 
 Map *mapPopLeast(Map *map, Map **leastPtr)
 {
-    if (leastPtr == NULL) {
+    if (leastPtr == NULL)
+    {
         return map;
     }
     if (map == NULL || map->leftChild == NULL)
