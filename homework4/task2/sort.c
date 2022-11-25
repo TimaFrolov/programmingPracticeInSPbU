@@ -19,7 +19,8 @@ void insertionSort(size_t len, int *arr)
             {
                 swap(arr + j, arr + j - 1);
             }
-            else {
+            else
+            {
                 break;
             }
         }
