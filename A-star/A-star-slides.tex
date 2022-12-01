@@ -1,0 +1,57 @@
+\documentclass{style}
+
+\begin{document}
+
+\slidetitle{Алгоритм A*}{07.12.2022}
+ 
+\begin{frame}[plain]
+    \titlepage
+\end{frame}
+
+\begin{frame}
+    \frametitle{История создания}
+    \begin{itemize}
+        \item Оригинальная статья - июль 1968 года
+        \item Название "A Formal Basis for the Heuristic Determination of Minimum Cost Paths"
+        \item Авторы: Peter E. Hart, Nils J. Nilsson, Bertram Raphael
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Используемые обозначения}
+    \begin{itemize}
+        \item Множество вершин $\{n_i\}$
+        \item Множество направленных рёбер $\{e_{ij}\}$, ребру $e_{ij}$ отвечает вес $c_{ij}$
+        \item Функция $\Gamma : n_i \rightarrow \{(n_j, c_{ij})\}$ - по вершине получаем всех 
+              потомков, с весами соответствующих рёбер
+        \item Подграф $G_n \subset \{n_i\}$ множество вершин, достижимых из $n \in \{n_i\}$ 
+        \item Функция $h(n_i, n_j)$ - минимальная длина пути из вершины $n_i$ в вершину $n_j$
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Постановка задачи}
+    \begin{itemize}
+        \item Собственно, задача:
+        \begin{itemize}
+            \item "Стартовая" \; вершина $s \in \{n_i\}$
+            \item Множество "целевых" \; вершин $T \subset G_s$
+            \item \(\displaystyle h(n) := \min _{t \in T} h(n, t) \)
+            \item Цель - найти $h(n)$ и путь, при котором оно достигается
+        \end{itemize}
+        \item Дополнительные требования, чтобы можно было использовать A*
+        \begin{itemize}
+            \item $\exists \delta > 0 : \forall i,j : c_{ij} > \delta$
+            \item Известна некоторая дополнительная информация о природе графа (объясню позднее)
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Идея алгоритма}
+    \begin{itemize}
+        \item 
+    \end{itemize}
+\end{frame}
+
+\end{document}

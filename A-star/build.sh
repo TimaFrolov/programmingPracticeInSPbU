@@ -1,0 +1,1 @@
+xelatex --shell-escape A-star-slides.tex
