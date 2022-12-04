@@ -1,5 +1,7 @@
 \documentclass{style}
 
+\usepackage{hyperref}
+
 \begin{document}
 
 \slidetitle{Алгоритм A*}{07.12.2022}
@@ -37,7 +39,7 @@
             \item "Стартовая" \; вершина $s \in \{n_i\}$
             \item Множество "целевых" \; вершин $T \subset G_s$
             \item \(\displaystyle h(n) := \min _{t \in T} h(n, t) \)
-            \item Цель - найти $h(n)$ и путь, при котором оно достигается
+            \item Цель - найти $h(s)$ и путь, при котором оно достигается
         \end{itemize}
         \item Дополнительные требования, чтобы можно было использовать A*
         \begin{itemize}
@@ -50,7 +52,95 @@
 \begin{frame}
     \frametitle{Идея алгоритма}
     \begin{itemize}
-        \item 
+        \item Введём $g(n) = h(s, n)$ - минимальная длина пути из вершины $s$ в вершину $n$
+        \item Введём $f(n)$ - длина оптимального пути из $s$ в $t \in T$, проходящего через $n$
+        \begin{itemize}
+            \item $f(n) = g(n) + h(n)$
+            \item Выгодно брать точки с наименьшим $f(n)$ из всех имеющихся.
+            \item $f(n) = f(s) \; \forall n$, лежащей на оптимальном пути
+            \item $f(n) > f(s) \; \forall n$, не лежащей на оптимальном пути
+            \item Вычисление $f(n)$ - ???
+        \end{itemize}
+        \item Вводим $\hat{f}(n)$ - аппроксимацию функции $f(n)$.
+        \begin{itemize}
+            \item $\hat{f}(n) = \hat{g}(n) + \hat{h}(n)$
+            \begin{itemize}
+                \item $\hat{g}(n)$ - расстояние минимального найденного пути до вершины n
+                \item $\hat(h)(n)$ - функция, которую мы вводим из дополнительных знаний о природе вершин и рёбер
+                    \item $\forall n \in G : \hat{h}(n) \leq h(n)$
+                    \item $\forall m, n \in G : h(m, n) + \hat{h}(n) >= \hat{h}(m)$
+            \end{itemize}
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Собственно, алгоритм}
+    \begin{enumerate}
+        \item Помечаем s "открытой"\,, вычисляем $\hat{f}(s)$
+        \item Выбираем открытую вершину n с наименьшим значением $\hat{f}$ (в случае, если таких несколько, выбираем вершину с наименьшим значением $\hat{h}$)
+        \item Если $n \in T$, n - искомая вершина. Строим обратный путь до $s$, завершаем исполнение алгоритма
+        \item Иначе помечаем $n$ "закрытой"\,, помечаем всех не закрытых потомков $n$ открытыми, вычисляем для них значение $\hat{f},$, возвращаемся к пункту 2
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Псевдокод}
+    \begin{tiny}
+        \begin{algorithmic}[1]
+        \Procedure{AStar}{$s$, $T$}
+            \State $open \leftarrow \{s\}$
+            \State $closed \leftarrow \emptyset$
+            \State $g[s] \leftarrow 0$
+            \State $f[s] \leftarrow g[s] + h(s)$
+            \While{$open \neq \emptyset$}
+                \State $n \leftarrow \min\{open\}$ // comparing by $f$
+                \If{$n \in T$}
+                    \State $break;$
+                \EndIf
+                \State $open.pop(n)$
+                \State $closed.push(n)$
+                \For{$(e, c) \in \Gamma(n)$}
+                    \If{$e \notin closed$}
+                        \State $open.push(e)$
+                        \State $g[e] \leftarrow g[n] + c$
+                        \State $f[e] \leftarrow g[e] + h(e)$
+                        \State $prev[e] \leftarrow n$
+                    \EndIf
+                \EndFor
+            \EndWhile
+            \State $path = []$ 
+            \While{$n \neq s$}
+                \State $path.pushleft(n)$
+                \State $n \leftarrow prev[n]$
+            \EndWhile
+            \State $return \; path$
+        \EndProcedure
+        \end{algorithmic}
+    \end{tiny}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Пример работы}
+    \begin{itemize}
+        \item \href{https://frolov.icu/astar/example}{Тык}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Свойства алгоритма A*}
+    \begin{itemize}
+        \item Алгоритм является допустимым
+        \item Алгоритм является оптимальным
+        \item Асимптотическая сложность
+        \begin{itemize}
+            \item Временная сложность $O(b^d)$, где b - среднее количество потомков у узла, d - глубина искомого пути
+            \begin{itemize}
+                \item Полиноминальная, если $|\hat{h}(x) - h(x)| = O(\log h(x))$
+            \end{itemize}
+            \item Объём используемой памяти $O(b^d)$ - храним информацию о каждой посещённой вершине
+        \item В случае $\hat{h}(n) = 0 \; \forall n$ A* эквивалентен алгоритму Дейкстры
+        \end{itemize}
     \end{itemize}
 \end{frame}
 
