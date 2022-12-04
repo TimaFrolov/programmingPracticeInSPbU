@@ -3,4 +3,5 @@
 *.nav
 *.snm
 *.toc
-*/
+*.vrb
+_minted*/
