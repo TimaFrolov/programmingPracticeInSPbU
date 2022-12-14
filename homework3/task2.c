@@ -19,6 +19,7 @@ int comparatorFunc(const void *a, const void *b)
     return (*(int *)a > *(int *)b) - (*(int *)a < *(int *)b);
 }
 
+// check if sorted <arr> contains <value> in O(log n)
 bool binarySearch(size_t len, int *arr, int value)
 {
     size_t leftIndex = 0, rightIndex = len - 1;
