@@ -47,12 +47,12 @@ size_t partition(size_t len, int *arr)
 
     while (leftIndex < rightIndex)
     {
-        while (leftIndex < len && pivot >= arr[leftIndex])
+        while (leftIndex < len - 1 && pivot >= arr[leftIndex])
         {
             ++leftIndex;
         }
 
-        while (pivot < arr[rightIndex])
+        while (rightIndex > 1 && pivot < arr[rightIndex])
         {
             --rightIndex;
         }
