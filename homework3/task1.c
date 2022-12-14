@@ -68,7 +68,7 @@ size_t partition(size_t len, int *arr)
 
 void sort(size_t len, int *arr)
 {
-    if (len <= 10)
+    if (len < 10)
     {
         insertionSort(len, arr);
         return;
