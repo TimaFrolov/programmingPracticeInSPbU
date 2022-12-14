@@ -28,12 +28,12 @@ void partition(size_t len, arrElementType *arr, arrElementType element)
 
     while (leftPtr < rightPtr)
     {
-        while (element >= *leftPtr)
+        while (leftPtr <= rightPtr && element >= *leftPtr)
         {
             ++leftPtr;
         }
 
-        while (element < *rightPtr)
+        while (rightPtr > leftPtr && element < *rightPtr)
         {
             --rightPtr;
         }
@@ -43,8 +43,11 @@ void partition(size_t len, arrElementType *arr, arrElementType element)
             swap(leftPtr, rightPtr);
         }
     }
-
-    swap(arr, leftPtr - 1);
+    
+    if (leftPtr > arr)
+    {
+        swap(arr, leftPtr - 1);
+    }
 }
 
 int main()
