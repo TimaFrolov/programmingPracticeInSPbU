@@ -3,36 +3,36 @@
 
 #define PATH_MAX 4096
 
-int find(size_t len, int *arr)
+int findMostCommonNumber(size_t len, int *array)
 {
-    int ans = 0;
+    int mostCommonNumber = 0;
     size_t maxCount = 0;
-    size_t currentCount = 1;
-    int currentNumber = arr[0];
+    size_t currentNumberCount = 1;
+    int currentNumber = array[0];
 
     for (size_t i = 1; i < len; ++i)
     {
-        if (arr[i] == currentNumber)
+        if (array[i] == currentNumber)
         {
-            ++currentCount;
+            ++currentNumberCount;
         }
         else
         {
-            if (currentCount > maxCount)
+            if (currentNumberCount > maxCount)
             {
-                ans = currentNumber;
-                maxCount = currentCount;
+                mostCommonNumber = currentNumber;
+                maxCount = currentNumberCount;
             }
-            currentCount = 1;
-            currentNumber = arr[i];
+            currentNumberCount = 1;
+            currentNumber = array[i];
         }
     }
 
-    if (currentCount > maxCount)
+    if (currentNumberCount > maxCount)
     {
         return currentNumber;
     }
-    return ans;
+    return mostCommonNumber;
 }
 
 int main()
@@ -62,8 +62,8 @@ int main()
         return -2;
     }
 
-    int *arr = calloc(arrSize, sizeof(int));
-    if (arr == NULL)
+    int *array = calloc(arrSize, sizeof(int));
+    if (array == NULL)
     {
         printf("Error allocating memory for array!\n");
         fclose(file);
@@ -71,20 +71,20 @@ int main()
     }
     for (size_t i = 0; i < arrSize; ++i)
     {
-        scanResult = scanf("%d", &arr[i]);
+        scanResult = scanf("%d", &array[i]);
         while (scanResult == 0)
         {
             printf("Given file contains incorrect data!\n");
             fclose(file);
-            free(arr);
+            free(array);
             return -2;
         }
     }
     fclose(file);
 
-    sort(arrSize, arr);
+    sort(arrSize, array);
 
-    printf("Most common value in array: %d\n", find(arrSize, arr));
-    free(arr);
+    printf("Most common value in array: %d\n", findMostCommonNumber(arrSize, array));
+    free(array);
     return 0;
 }
