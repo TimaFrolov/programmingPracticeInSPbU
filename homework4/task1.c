@@ -1,5 +1,8 @@
 #include <stdio.h>
 #include <locale.h>
+#include <stdbool.h>
+
+// #define DEBUG 1
 
 #define BIT_DEPTH 32
 
@@ -48,8 +51,24 @@ void printBitNumber(BinNumber number)
     }
 }
 
+#ifdef DEBUG
+bool test1()
+{
+    return binNumberToInt(sumBinNumbers(intToBinNumber(2), intToBinNumber(-1))) == 1;
+}
+
+bool test2()
+{
+    return binNumberToInt(sumBinNumbers(intToBinNumber(0x7FFFFFFF), intToBinNumber(0x7FFFFFFF))) == -2;
+}
+#endif
+
 int main()
 {
+#ifdef DEBUG
+    printf("First test result: %d\n", test1());
+    printf("Second test result: %d\n", test2());
+#endif
     setlocale(LC_ALL, "Ru.866");
 
     int firstNumber = 0, secondNumber = 0;
