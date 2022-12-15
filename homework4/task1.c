@@ -8,35 +8,35 @@ typedef struct
 
 BinNumber intToNumber(int number)
 {
-    BinNumber num = {bit : {0}};
+    BinNumber bitNumber = {bit : {0}};
     for (unsigned int n = 1 << 31, i = 31; n > 0; n >>= 1, --i)
     {
-        num.bit[i] = n & number ? 1 : 0;
+        bitNumber.bit[i] = n & number ? 1 : 0;
     }
-    return num;
+    return bitNumber;
 }
 
-int binNumberToInt(BinNumber number)
+int binNumberToInt(BinNumber binNumber)
 {
-    int num = 0;
+    int number = 0;
     for (unsigned int n = 0; n < 32; ++n)
     {
-        num |= (number.bit[n]) << n;
+        number |= (binNumber.bit[n]) << n;
     }
-    return num;
+    return number;
 }
 
 BinNumber sumBitNumbers(BinNumber number1, BinNumber number2)
 {
-    BinNumber answer = {bit : {0}};
-    answer.bit[0] = number1.bit[0] ^ number2.bit[0];
+    BinNumber sumOfNumbers = {bit : {0}};
+    sumOfNumbers.bit[0] = number1.bit[0] ^ number2.bit[0];
     unsigned char transferBit = number1.bit[0] && number2.bit[0];
     for (unsigned int n = 1; n < 31; ++n)
     {
-        answer.bit[n] = number1.bit[n] ^ number2.bit[n] ^ transferBit;
+        sumOfNumbers.bit[n] = number1.bit[n] ^ number2.bit[n] ^ transferBit;
         transferBit = (number1.bit[n] + number2.bit[n] + transferBit) >= 2;
     }
-    return answer;
+    return sumOfNumbers;
 }
 
 void printBitNumber(BinNumber number)
