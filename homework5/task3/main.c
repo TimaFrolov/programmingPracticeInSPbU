@@ -14,9 +14,9 @@ int main()
 
     printf("Input arithmetic equation in infix form (every number must contain only 1 digit) so programm will print it in postfix form: ");
 
-    for (char c = getc(stdin); c != '\n'; c = getc(stdin))
+    for (char curChar = getc(stdin); curChar != '\n'; curChar = getc(stdin))
     {
-        switch (c)
+        switch (curChar)
         {
         case ' ':
             break;
@@ -41,7 +41,7 @@ int main()
                     return -1;
                 }
             }
-            errorCode = stackPush(stack, &c);
+            errorCode = stackPush(stack, &curChar);
             if (errorCode == -1)
             {
                 printf("\nError allocating memory!\n");
@@ -72,7 +72,7 @@ int main()
                     return -1;
                 }
             }
-            errorCode = stackPush(stack, &c);
+            errorCode = stackPush(stack, &curChar);
             if (errorCode == -1)
             {
                 printf("\nError allocating memory!\n");
@@ -84,7 +84,7 @@ int main()
         }
         case '(':
         {
-            errorCode = stackPush(stack, &c);
+            errorCode = stackPush(stack, &curChar);
             if (errorCode == -1)
             {
                 printf("\nError allocating memory!\n");
@@ -114,7 +114,7 @@ int main()
         }
         default:
         {
-            int num = c - '0';
+            int num = curChar - '0';
             if (num > 9 || num < 0)
             {
                 printf("\nIncorrect input!\n");
