@@ -1,37 +1,38 @@
 #include <stdio.h>
 #include <locale.h>
 
+#define BIT_DEPTH 32
+
 typedef struct
 {
-    unsigned char bit[32];
+    unsigned char bit[BIT_DEPTH];
 } BinNumber;
 
-BinNumber intToNumber(int number)
+BinNumber intToBinNumber(int number)
 {
-    BinNumber bitNumber = {bit : {0}};
-    for (unsigned int n = 1 << 31, i = 31; n > 0; n >>= 1, --i)
+    BinNumber binNumber = {bit : {0}};
+    for (unsigned int n = 1 << (BIT_DEPTH - 1), i = (BIT_DEPTH - 1); n > 0; n >>= 1, --i)
     {
-        bitNumber.bit[i] = n & number ? 1 : 0;
+        binNumber.bit[i] = n & number ? 1 : 0;
     }
-    return bitNumber;
+    return binNumber;
 }
 
 int binNumberToInt(BinNumber binNumber)
 {
     int number = 0;
-    for (unsigned int n = 0; n < 32; ++n)
+    for (unsigned int n = 0; n < BIT_DEPTH; ++n)
     {
         number |= (binNumber.bit[n]) << n;
     }
     return number;
 }
 
-BinNumber sumBitNumbers(BinNumber number1, BinNumber number2)
+BinNumber sumBinNumbers(BinNumber number1, BinNumber number2)
 {
     BinNumber sumOfNumbers = {bit : {0}};
-    sumOfNumbers.bit[0] = number1.bit[0] ^ number2.bit[0];
-    unsigned char transferBit = number1.bit[0] && number2.bit[0];
-    for (unsigned int n = 1; n < 31; ++n)
+    unsigned char transferBit = 0;
+    for (unsigned int n = 0; n < BIT_DEPTH; ++n)
     {
         sumOfNumbers.bit[n] = number1.bit[n] ^ number2.bit[n] ^ transferBit;
         transferBit = (number1.bit[n] + number2.bit[n] + transferBit) >= 2;
@@ -41,7 +42,7 @@ BinNumber sumBitNumbers(BinNumber number1, BinNumber number2)
 
 void printBitNumber(BinNumber number)
 {
-    for (signed char i = 31; i >= 0; --i)
+    for (signed char i = (BIT_DEPTH - 1); i >= 0; --i)
     {
         printf("%i", number.bit[i]);
     }
@@ -70,9 +71,9 @@ int main()
         scanResult = scanf("%d", &secondNumber);
     }
 
-    BinNumber firstBitNumber = intToNumber(firstNumber);
-    BinNumber secondBitNumber = intToNumber(secondNumber);
-    BinNumber sumOfBitNumbers = sumBitNumbers(firstBitNumber, secondBitNumber);
+    BinNumber firstBitNumber = intToBinNumber(firstNumber);
+    BinNumber secondBitNumber = intToBinNumber(secondNumber);
+    BinNumber sumOfBitNumbers = sumBinNumbers(firstBitNumber, secondBitNumber);
 
     printf("Двоичное представление первого числа: ");
     printBitNumber(firstBitNumber);
