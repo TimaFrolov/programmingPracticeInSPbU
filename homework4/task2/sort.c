@@ -45,12 +45,12 @@ size_t partition(size_t len, int *arr)
 
     while (leftIndex < rightIndex)
     {
-        while (leftIndex < len && pivot >= arr[leftIndex])
+        while (leftIndex < len - 1 && pivot >= arr[leftIndex])
         {
             ++leftIndex;
         }
 
-        while (pivot < arr[rightIndex])
+        while (rightIndex > leftIndex && pivot < arr[rightIndex])
         {
             --rightIndex;
         }
@@ -66,7 +66,7 @@ size_t partition(size_t len, int *arr)
 
 void sort(size_t len, int *arr)
 {
-    if (len <= 10)
+    if (len < 10)
     {
         insertionSort(len, arr);
         return;
