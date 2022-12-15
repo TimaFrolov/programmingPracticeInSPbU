@@ -163,9 +163,7 @@ int main()
         free(stack);
         return 1;
     }
-    int null;
-    errorCode = stackPop(stack, &null);
-    if (errorCode != -3)
+    if (!stackEmptyOrNULL(stack))
     {
         printf("Incorrect input!\n");
         stackFree(stack);
