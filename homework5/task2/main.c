@@ -6,7 +6,7 @@
 // #define DEBUG 1
 
 // Error codes: -1 = error allocating memory, 0 = OK
-int testString(char *str, bool *result)
+int isStringCorrectBracketSequence(char *str, bool *result)
 {
     Stack *stack = NULL;
     int errorCode = createStack(&stack, sizeof(char));
@@ -75,7 +75,7 @@ int testString(char *str, bool *result)
 bool test1()
 {
     bool result = false;
-    int errorCode = testString("(())", &result);
+    int errorCode = isStringCorrectBracketSequence("(())", &result);
     if (errorCode != 0 || !result)
     {
         printf("Test failed! Error code = %d, string = \"(())\", result = %d\n", errorCode, result);
@@ -85,7 +85,7 @@ bool test1()
 bool test2()
 {
     bool result = false;
-    int errorCode = testString("({[()]})", &result);
+    int errorCode = isStringCorrectBracketSequence("({[()]})", &result);
     if (errorCode != 0 || !result)
     {
         printf("Test failed! Error code = %d, string = \"({[()]})\", result = %d\n", errorCode, result);
@@ -95,7 +95,7 @@ bool test2()
 bool test3()
 {
     bool result = false;
-    int errorCode = testString("(()", &result);
+    int errorCode = isStringCorrectBracketSequence("(()", &result);
     if (errorCode != 0 || result)
     {
         printf("Test failed! Error code = %d, string = \"(()\", result = %d\n", errorCode, result);
@@ -105,7 +105,7 @@ bool test3()
 bool test4()
 {
     bool result = false;
-    int errorCode = testString("(afssdosidjif{1sadasd}fsdfs[123])", &result);
+    int errorCode = isStringCorrectBracketSequence("(afssdosidjif{1sadasd}fsdfs[123])", &result);
     if (errorCode != 0 || !result)
     {
         printf("Test failed! Error code = %d, string = \"(afssdosidjif{1sadasd}fsdfs[123])\", result = %d\n", errorCode, result);
@@ -151,7 +151,7 @@ int main()
 
     bool testResult = false;
 
-    int errorCode = testString(str, &testResult);
+    int errorCode = isStringCorrectBracketSequence(str, &testResult);
 
     free(str);
 
