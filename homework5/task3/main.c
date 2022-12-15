@@ -25,7 +25,7 @@ int main()
         {
             char topValue = '\0';
             int errorCode = stackPop(stack, &topValue);
-            while (errorCode == 0 && (topValue == '+' || topValue == '-'))
+            while (errorCode == 0 && (topValue == '+' || topValue == '-' || topValue == '*' || topValue == '/'))
             {
                 printf(" %c", topValue);
                 errorCode = stackPop(stack, &topValue);
@@ -56,7 +56,7 @@ int main()
         {
             char topValue = '\0';
             int errorCode = stackPop(stack, &topValue);
-            while (errorCode == 0 && (topValue == '+' || topValue == '-' || topValue == '*' || topValue == '/'))
+            while (errorCode == 0 && (topValue == '*' || topValue == '/'))
             {
                 printf("%c", topValue);
                 errorCode = stackPop(stack, &topValue);
