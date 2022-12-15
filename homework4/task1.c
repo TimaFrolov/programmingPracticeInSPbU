@@ -30,11 +30,11 @@ BinNumber sumBitNumbers(BinNumber number1, BinNumber number2)
 {
     BinNumber answer = {bit : {0}};
     answer.bit[0] = number1.bit[0] ^ number2.bit[0];
-    unsigned char t = number1.bit[0] && number2.bit[0];
+    unsigned char transferBit = number1.bit[0] && number2.bit[0];
     for (unsigned int n = 1; n < 31; ++n)
     {
-        answer.bit[n] = number1.bit[n] ^ number2.bit[n] ^ t;
-        t = (number1.bit[n] + number2.bit[n] + t) >= 2;
+        answer.bit[n] = number1.bit[n] ^ number2.bit[n] ^ transferBit;
+        transferBit = (number1.bit[n] + number2.bit[n] + transferBit) >= 2;
     }
     return answer;
 }
