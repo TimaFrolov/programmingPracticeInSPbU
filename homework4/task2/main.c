@@ -71,7 +71,7 @@ int main()
     }
     for (size_t i = 0; i < arrSize; ++i)
     {
-        scanResult = scanf("%d", &array[i]);
+        scanResult = fscanf(file, "%d", &array[i]);
         while (scanResult == 0)
         {
             printf("Given file contains incorrect data!\n");
