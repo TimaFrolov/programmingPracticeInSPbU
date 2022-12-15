@@ -25,29 +25,38 @@ signed char readCommand()
     return command;
 }
 
-void executeCommand1(Record **records, size_t *lastRecord)
+int executeCommand1(Record **records, size_t *countRecords)
 {
-    if (*lastRecord >= MAX_RECORDS)
+    if (*countRecords >= MAX_RECORDS)
     {
         printf("Database is full, cannot add new record!\n");
-        return;
+        return 0;
     }
+
+    records[*countRecords] = calloc(1, sizeof(Record));
+    if (records[*countRecords] == NULL)
+    {
+        return -2;
+    }
+
     printf("Enter phone number (no longer than 15 symbols, without spaces): ");
-    scanf("%15s", records[*lastRecord]->phoneNumber);
+    scanf("%15s", records[*countRecords]->phoneNumber);
     printf("Enter name (no longer than 50 symbols, without spaces): ");
-    scanf("%50s", records[*lastRecord]->name);
-    ++*lastRecord;
+    scanf("%50s", records[*countRecords]->name);
+    ++*countRecords;
+
+    return 0;
 }
 
-void executeCommand2(Record **records, size_t lastRecord)
+void executeCommand2(Record **records, size_t countRecords)
 {
-    for (size_t i = 0; i < lastRecord; ++i)
+    for (size_t i = 0; i < countRecords; ++i)
     {
         printf("Phone number: %s, Name: %s\n", records[i]->phoneNumber, records[i]->name);
     }
 }
 
-void executeCommand3(Record **records, size_t lastRecord)
+void executeCommand3(Record **records, size_t countRecords)
 {
     printf("Enter name to find (no longer than 50 symbols): ");
     char name[51] = {0};
@@ -55,7 +64,7 @@ void executeCommand3(Record **records, size_t lastRecord)
 
     bool found = false;
 
-    for (size_t i = 0; i < lastRecord; ++i)
+    for (size_t i = 0; i < countRecords; ++i)
     {
         if (strcmp(name, records[i]->name) == 0)
         {
@@ -70,7 +79,7 @@ void executeCommand3(Record **records, size_t lastRecord)
     }
 }
 
-void executeCommand4(Record **records, size_t lastRecord)
+void executeCommand4(Record **records, size_t countRecords)
 {
 
     printf("Enter phone number to find (no longer than 15 symbols, without spaces): ");
@@ -79,7 +88,7 @@ void executeCommand4(Record **records, size_t lastRecord)
 
     bool found = false;
 
-    for (size_t i = 0; i < lastRecord; ++i)
+    for (size_t i = 0; i < countRecords; ++i)
     {
         if (strcmp(phoneNumber, records[i]->phoneNumber) == 0)
         {
@@ -94,7 +103,7 @@ void executeCommand4(Record **records, size_t lastRecord)
     }
 }
 
-int executeCommand5(Record **records, size_t lastRecord, char **fileName)
+int executeCommand5(Record **records, size_t countRecords, char **fileName)
 {
     char tmp[101] = {0};
     printf("Enter file name (or enter \"0\" to save data to previous file): ");
@@ -112,7 +121,7 @@ int executeCommand5(Record **records, size_t lastRecord, char **fileName)
     }
 
     fprintf(file, "phoneNumber\tname");
-    for (size_t i = 0; i < lastRecord; ++i)
+    for (size_t i = 0; i < countRecords; ++i)
     {
         fprintf(file, "\n%s\t%s", records[i]->phoneNumber, records[i]->name);
     }
@@ -120,7 +129,7 @@ int executeCommand5(Record **records, size_t lastRecord, char **fileName)
     return 0;
 }
 
-int readDataFromFile(Record **records, char *fileName, size_t *lastRecord)
+int readDataFromFile(Record **records, char *fileName, size_t *countRecords)
 {
     FILE *file = fopen(fileName, "r");
     if (file == NULL)
@@ -142,8 +151,14 @@ int readDataFromFile(Record **records, char *fileName, size_t *lastRecord)
 
     while (!feof(file))
     {
-        fscanf(file, "%s %s", records[*lastRecord]->phoneNumber, records[*lastRecord]->name);
-        ++*lastRecord;
+        records[*countRecords] = calloc(1, sizeof(Record));
+        if (records[*countRecords] == NULL)
+        {
+            fclose(file);
+            return -2;
+        }
+        fscanf(file, "%s %s", records[*countRecords]->phoneNumber, records[*countRecords]->name);
+        ++*countRecords;
     }
 
     fclose(file);
@@ -165,29 +180,25 @@ int main()
     Record *records[MAX_RECORDS] = {NULL};
     for (size_t i = 0; i < MAX_RECORDS; ++i)
     {
-        records[i] = calloc(1, sizeof(Record));
-        if (records[i] == NULL)
+        int readCode = readDataFromFile(records, fileName, &countRecords);
+        switch (readCode)
+        {
+        case -2:
         {
             printf("Error allocating memory!");
             freeRecords(records);
             return -2;
         }
-    }
-    size_t lastRecord = 0;
-
-    printf("Enter file path (no longer than 100 symbols) or enter \"0\" to work with new database: ");
-    scanf("%100s", fileName);
-
-    if (strcmp(fileName, "0"))
-    {
-        int readCode = readDataFromFile(records, fileName, &lastRecord);
-        if (readCode == -3)
+        case -3:
         {
             printf("File with this name doesn't exist! Working with new database instead\n");
+            break;
         }
-        else if (readCode == -4)
+        case -4:
         {
             printf("Given file contains incorrect data! Working with new database instead\n");
+            break;
+        }
         }
     }
 
@@ -197,25 +208,33 @@ int main()
         switch (command)
         {
         case 1:
-            executeCommand1(records, &lastRecord);
+        {
+            int result = executeCommand1(records, &countRecords);
+            if (result == -2)
+            {
+                printf("Error allocating memory!");
+                freeRecords(records);
+                return -2;
+            }
             break;
+        }
         case 2:
-            executeCommand2(records, lastRecord);
+            executeCommand2(records, countRecords);
             break;
         case 3:
-            executeCommand3(records, lastRecord);
+            executeCommand3(records, countRecords);
             break;
         case 4:
-            executeCommand4(records, lastRecord);
+            executeCommand4(records, countRecords);
             break;
         case 5:
         {
-            int result = executeCommand5(records, lastRecord, &fileName);
+            int result = executeCommand5(records, countRecords, &fileName);
             if (result == -3)
             {
-                printf("File with this name doesn't exist!\n");
+                printf("Cannot write to file with this path\n");
             }
-            else if (result == 0)
+            else
             {
                 printf("Saved database to file!\n");
             }
@@ -226,5 +245,6 @@ int main()
     }
 
     free(fileName);
+    freeRecords(records);
     return 0;
 }
