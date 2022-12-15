@@ -178,7 +178,12 @@ int main()
     char *fileName = calloc(101, sizeof(char));
 
     Record *records[MAX_RECORDS] = {NULL};
-    for (size_t i = 0; i < MAX_RECORDS; ++i)
+    size_t countRecords = 0;
+
+    printf("Enter file path (no longer than 100 symbols) or enter \"0\" to work with new database: ");
+    scanf("%100s", fileName);
+
+    if (strcmp(fileName, "0"))
     {
         int readCode = readDataFromFile(records, fileName, &countRecords);
         switch (readCode)
