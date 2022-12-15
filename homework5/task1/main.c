@@ -172,5 +172,6 @@ int main()
     }
 
     printf("Result: %d\n", result);
+    free(stack);
     return 0;
 }
