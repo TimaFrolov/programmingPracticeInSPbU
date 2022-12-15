@@ -9,17 +9,25 @@ int divide(int a, int b) { return a / b; }
 
 int makeArithmeticOperation(Stack *stack, int (*operation)(int, int))
 {
-    int lastNum = 0, preLastNum = 0;
+    int firstOperand = 0, secondOperand = 0;
 
-    stackPop(stack, &lastNum);
-    int errorCode = stackPop(stack, &preLastNum);
+    int errorCode = stackPop(stack, &firstOperand);
+    if (errorCode == -3)
+    {
+        return -3;
+    }
+    errorCode = stackPop(stack, &secondOperand);
     if (errorCode == -3)
     {
         return -3;
     }
 
-    lastNum = operation(preLastNum, lastNum);
-    errorCode = stackPush(stack, &lastNum);
+    if (operation == divide && firstOperand == 0)
+    {
+        return -4;
+    }
+    firstOperand = operation(secondOperand, firstOperand);
+    errorCode = stackPush(stack, &firstOperand);
     if (errorCode == -1)
     {
         return -1;
@@ -109,6 +117,12 @@ int main()
                 printf("Incorrect input!\n");
                 free(stack);
                 return 1;
+            }
+            if (errorCode == -4) {
+                printf("Cannot divide by zero!\n");
+                stackFree(stack);
+                free(stack);
+                return 2;
             }
             if (errorCode == -1)
             {
