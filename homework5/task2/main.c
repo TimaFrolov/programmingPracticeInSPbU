@@ -36,9 +36,9 @@ int isStringCorrectBracketSequence(char *str, bool *result)
         case ')':
         {
             char topValue = '\0';
-            stackPop(stack, &topValue);
+            int errorCode = stackPop(stack, &topValue);
 
-            if (topValue != '(')
+            if (errorCode == -3 || topValue != '(')
             {
                 stackFree(stack);
                 free(stack);
@@ -52,11 +52,11 @@ int isStringCorrectBracketSequence(char *str, bool *result)
         case '>':
         {
             char topValue = '\0';
-            stackPop(stack, &topValue);
+            int errorCode = stackPop(stack, &topValue);
 
-            if (topValue != str[i] - 2) // difference in numbers between closing and opening
-            {                           // brackets for '<>','{}','[]' in ascii table is equal to 2,
-                stackFree(stack);       // while for '()' it is only 1
+            if (errorCode == -3 || topValue != str[i] - 2) // difference in numbers between closing and opening
+            {                                              // brackets for '<>','{}','[]' in ascii table is equal to 2,
+                stackFree(stack);                          // while for '()' it is only 1
                 free(stack);
                 *result = false;
                 return 0;
