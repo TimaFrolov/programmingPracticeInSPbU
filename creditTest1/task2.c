@@ -172,7 +172,7 @@ void sortFirstNOfArray(Product *productsArray, size_t amountToSort, size_t produ
     }
     else
     {
-    //     // works in O(productsAmount * amountToSort) time
+        // works in O(productsAmount * amountToSort) time
         for (size_t i = 0; i < amountToSort; ++i)
         {
             Product *max = productsArray + i;
