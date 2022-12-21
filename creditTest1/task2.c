@@ -157,6 +157,37 @@ Error getInputFromFile(Product **productsArrayPtr, size_t *productAmountPtr)
     return OK;
 }
 
+void sortFirstNOfArray(Product *productsArray, size_t amountToSort, size_t productsAmount)
+{
+    size_t logOfProductsAmount = 0;
+    for (size_t i = 1; i < productsAmount && logOfProductsAmount <= 64; i <<= 1)
+    {
+        ++logOfProductsAmount;
+    }
+
+    if (amountToSort > logOfProductsAmount)
+    {
+        // works in O(productsAmount * log(productsAmount)) time
+        qsort(productsArray, productsAmount, sizeof(Product), compareByAmount);
+    }
+    else
+    {
+    //     // works in O(productsAmount * amountToSort) time
+        for (size_t i = 0; i < amountToSort; ++i)
+        {
+            Product *max = productsArray + i;
+            for (size_t j = i + 1; j < productsAmount; ++j)
+            {
+                if (productsArray[j].amount > max->amount)
+                {
+                    max = productsArray + j;
+                }
+            }
+            swap(max, productsArray + i);
+        }
+    }
+}
+
 int main()
 {
     size_t sale50PercentAmount;
@@ -208,33 +239,7 @@ int main()
         break;
     }
 
-    size_t logOfProductsAmount = 0;
-    for (size_t i = 1; i < productsAmount && logOfProductsAmount <= 64; i <<= 1)
-    {
-        ++logOfProductsAmount;
-    }
-
-    if (sale50PercentAmount > logOfProductsAmount)
-    {
-        // works in O(productsAmount*log(productsAmount)) time
-        qsort(productsArray, productsAmount, sizeof(Product), compareByAmount);
-    }
-    else
-    {
-        // works in O(productsAmount*sale50PercentAmount) time
-        for (size_t i = 0; i < sale50PercentAmount; ++i)
-        {
-            Product *max = productsArray + i;
-            for (size_t j = i + 1; j < productsAmount; ++j)
-            {
-                if (productsArray[j].amount > max->amount)
-                {
-                    max = productsArray + j;
-                }
-            }
-            swap(max, productsArray + i);
-        }
-    }
+    sortFirstNOfArray(productsArray, sale50PercentAmount, productsAmount);
 
     printf("Products with 50%% sale:\n");
     for (size_t i = 0; i < sale50PercentAmount; ++i)
@@ -242,27 +247,8 @@ int main()
         printf("%s - %lu\n", productsArray[i].name, productsArray[i].amount);
     }
 
-    if (sale25PercentAmount > logOfProductsAmount)
-    {
-        // works in O(productsAmount*log(productsAmount)) time
-        qsort(productsArray + sale50PercentAmount, productsAmount - sale50PercentAmount, sizeof(Product), compareByName);
-    }
-    else
-    {
-        // works in O(productsAmount*sale25PercentAmount) time
-        for (size_t i = sale50PercentAmount; i < sale50PercentAmount + sale25PercentAmount; ++i)
-        {
-            Product *min = productsArray + i;
-            for (size_t j = i + 1; j < productsAmount; ++j)
-            {
-                if (strcmp(productsArray[j].name, min->name) < 0)
-                {
-                    min = productsArray + j;
-                }
-            }
-            swap(min, productsArray + i);
-        }
-    }
+    sortFirstNOfArray(productsArray + sale50PercentAmount, sale25PercentAmount, productsAmount - sale50PercentAmount);
+
     printf("Products with 25%% sale:\n");
     for (size_t i = sale50PercentAmount; i < sale50PercentAmount + sale25PercentAmount; ++i)
     {
