@@ -5,7 +5,8 @@ typedef enum Error
     OK = 0,
     MemoryAllocationError = -1,
     ListIsNULL = -2,
-    ListIsEmpty = -3
+    ListIsEmpty = -3,
+    GivenPointerIsNULL = -4
 } Error;
 
 typedef struct CyclicList CyclicList;
