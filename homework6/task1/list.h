@@ -11,7 +11,7 @@ int createList(SortedList **list);
 
 // Append element to list
 // Error codes: -1 = error allocating memory, -2 = list is NULL, 0 = OK
-int listAppend(SortedList *list, int value);
+int listAdd(SortedList *list, int value);
 
 // Remove element from list
 // Error codes: -2 = list is NULL, 0 = OK

@@ -39,8 +39,15 @@ int main()
                 printf("Wrong input! Please try again: ");
                 scanResult = scanf("%d", &value);
             }
-            int appendResult = listAppend(list, value);
-            printf(appendResult == 0 ? "Succesfully added value to list\n" : "Error allocating memory, try again\n");
+            int appendResult = listAdd(list, value);
+            if (appendResult == -1)
+            {
+                printf("Error allocating memory!\n");
+                listFree(list);
+                free(list);
+                return -1;
+            }
+            printf("Succesfully added value to list\n");
             break;
         }
         case 2:

@@ -24,7 +24,7 @@ int createList(SortedList **list)
     return (list == NULL) ? -1 : 0;
 }
 
-int listAppend(SortedList *list, int value)
+int listAdd(SortedList *list, int value)
 {
     if (list == NULL)
     {
