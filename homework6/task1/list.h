@@ -14,7 +14,7 @@ int createList(SortedList **list);
 int listAdd(SortedList *list, int value);
 
 // Remove element from list
-// Error codes: -2 = list is NULL, 0 = OK
+// Error codes: -2 = list is NULL, 0 = OK (no such value in list), 1 = OK, removed value from list
 int listRemove(SortedList *list, int value);
 
 // Print list to stdout

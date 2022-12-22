@@ -80,6 +80,12 @@ int listRemove(SortedList *list, int value)
         return 0;
     }
 
+    if (curElement->value == value) {
+        list->top = curElement->next;
+        free(curElement);
+        return 1;
+    }
+
     while (curElement->next != NULL)
     {
         if (curElement->next->value == value)
@@ -88,7 +94,7 @@ int listRemove(SortedList *list, int value)
             curElement->next = element->next;
 
             free(element);
-            return 0;
+            return 1;
         }
         curElement = curElement->next;
     }
