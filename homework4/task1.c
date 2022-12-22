@@ -59,7 +59,7 @@ bool test1()
 
 bool test2()
 {
-    return binNumberToInt(sumBinNumbers(intToBinNumber(0x7FFFFFFF), intToBinNumber(0x7FFFFFFF))) == -2;
+    return binNumberToInt(sumBinNumbers(intToBinNumber(0x7FFFFFFF), intToBinNumber(0xBFFFFFFF))) == 0x3FFFFFFE;
 }
 #endif
 
